@@ -1,0 +1,1 @@
+console.log("KAMP Homepage v1");
