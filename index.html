@@ -77,13 +77,22 @@
     </section>
 
     <script>
-    fetch("header.html")
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById("header-container").innerHTML = data;
-        });
+        fetch("./header.html")
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("header.html을 찾을 수 없습니다.");
+                }
+
+                return response.text();
+            })
+            .then(html => {
+                document.getElementById("header-container").innerHTML = html;
+            })
+            .catch(error => {
+                console.error("헤더 불러오기 오류:", error);
+            });
     </script>
-    
+
 </body>
 
 </html>
