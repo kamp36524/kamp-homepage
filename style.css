@@ -64,6 +64,34 @@ img {
 
 }
 
+.logo-link{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    color: inherit;
+    text-decoration: none;
+}
+
+.logo-link:visited,
+.logo-link:hover,
+.logo-link:active {
+    color: inherit;
+    text-decoration: none;
+}
+
+.logo-link img {
+    display: block;
+    height: 50px;
+    width: auto;
+}
+
+.logo-link span {
+    display: block;
+    margin: 0;
+    line-height: 1;
+}
+
+/* 헤더 메뉴 */
 .nav-menu{
     display: flex;
     flex-direction: row;
