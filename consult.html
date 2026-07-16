@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/pages.css">
+<script src="/js/include.js" defer></script>
+<title>상담 신청 | 한국자산관리원</title>
+<meta name="description" content="한국자산관리원 공식 홈페이지">
+</head>
+<body>
+<div id="site-header"></div>
+<main>
+  <section class="page-hero"><div class="container"><h1>상담 신청</h1><p>내용을 남겨주시면 확인 후 연락드리겠습니다.</p></div></section>
+  <section class="section">
+    <div class="container consult-layout">
+      <aside class="consult-info">
+        <h2>전문가 상담 안내</h2>
+        <p>상담 목적과 현재 상황을 구체적으로 작성해 주시면 보다 정확한 안내가 가능합니다.</p>
+        <p>접수된 정보는 상담 연락 목적으로만 사용됩니다.</p>
+      </aside>
+      <form id="consult-form" class="consult-form card" action="https://formspree.io/f/REPLACE_WITH_YOUR_FORM_ID" method="POST">
+        <div class="form-grid">
+          <div class="form-field"><label for="name">이름 *</label><input id="name" name="name" required></div>
+          <div class="form-field"><label for="phone">휴대폰 번호 *</label><input id="phone" name="phone" type="tel" placeholder="010-0000-0000" required></div>
+          <div class="form-field full">
+            <label for="category">상담 분야 *</label>
+            <select id="category" name="category" required>
+              <option value="">선택해 주세요</option>
+              <option>KAMP 세미나</option><option>KAMP 경매</option><option>자산관리</option>
+              <option>법률·세무 자문</option><option>재건축·재개발 자문</option><option>기타</option>
+            </select>
+          </div>
+          <div class="form-field full"><label for="content">상담 내용 *</label><textarea id="content" name="content" required placeholder="현재 상황과 상담을 원하는 내용을 작성해 주세요."></textarea></div>
+        </div>
+        <label class="agreement"><input type="checkbox" name="privacy_agreement" required><span>개인정보 수집 및 상담 연락에 동의합니다.</span></label>
+        <button class="btn btn-primary" type="submit">상담 신청하기</button>
+        <div id="form-message" class="form-message" role="status"></div>
+      </form>
+    </div>
+  </section>
+</main>
+<script src="/js/form.js" defer></script>
+
+<div id="site-footer"></div>
+</body>
+</html>

@@ -1,83 +1,62 @@
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>한국자산관리원</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/pages.css">
+<script src="/js/include.js" defer></script>
+<title>인사말 | 한국자산관리원</title>
+<meta name="description" content="한국자산관리원 공식 홈페이지">
 </head>
-
 <body>
+<div id="site-header"></div>
+<main>
+  <section class="page-hero"><div class="container"><h1>인사말</h1><p>고객의 신뢰를 가장 중요한 가치로 생각합니다.</p></div></section>
+  <section class="section">
+    <div class="container greeting-layout">
+      <div class="director-photo"><img src="/images/greeting/director.jpg" alt="한국자산관리원 원장"></div>
+      <article class="greeting-copy">
+        <h2>안녕하십니까.<br>한국자산관리원 원장입니다.</h2>
+        <p>한국자산관리원 홈페이지를 방문해 주셔서 감사합니다.</p>
+        <p>저희는 전세사기 예방부터 부동산 투자, 임대차, 경·공매, NPL, 상속·증여까지 부동산 전 분야를 아우르는 통합 자산관리 서비스를 제공합니다.</p>
+        <p>법률·세무·감정평가·건물관리 등 각 분야 전문가와 협업하고, 축적된 데이터와 현장 경험을 바탕으로 고객에게 객관적이고 실행 가능한 해결책을 제시하겠습니다.</p>
+        <p>획일적인 답이 아닌 고객의 목적과 환경에 맞춘 컨설팅으로 장기적인 자산가치와 안정적인 성장을 함께 만들어가겠습니다.</p>
+        <div class="profile-box">
+            <h3>주요 약력</h3>
 
-    <!-- Header -->
-    <div id="header-container"></div>
+            <ul class="career-list">
+                <li><strong>前</strong> 국토교통부 정책자문위원</li>
+                <li><strong>前</strong> 기획재정부 세제발전심의위원</li>
+                <li><strong>前</strong> 서울시·경기도 도시재정비위원</li>
+                <li><strong>前</strong> 공무원연금공단 자산운용위원</li>
+                <li><strong>前</strong> KB금융그룹 「WM스타자문단」 자문위원</li>
 
-
-    <section class="page-title">
-
-        <h1>인사말</h1>
-        <p>고객의 자산을 지키고 성장시키는 든든한 파트너</p>
-
-    </section>
-
-
-    <section class="greeting">
-
-        <div class="greeting-image">
-            <img src="about.jpg" alt="대표">
+                <li><strong>現</strong> 금융위원회 금융발전심의위원</li>
+                <li><strong>現</strong> 예금보험공사 자문위원</li>
+                <li><strong>現</strong> LH 부동산자문위원</li>
+                <li><strong>現</strong> 국민연금공단 투자심의위원</li>
+                <li><strong>現</strong> 용인시·고양시 도시계획위원</li>
+                <li><strong>現</strong> HUG 도시재생전문위원</li>
+                <li><strong>現</strong> 임대리츠기금 투자심의위원</li>
+                <li><strong>現</strong> 남북하나재단 자문위원</li>
+                <li><strong>現</strong> 통일지도자그룹 부총재</li>
+                <li><strong>現</strong> 대한민국 미래희망재단 등기이사</li>
+                <li><strong>現</strong> 강소기업협회 고문</li>
+                <li><strong>現</strong> 경남매일신문 고문</li>
+                <li><strong>現</strong> 한국공인중개사협회 자문위원</li>
+                <li><strong>現</strong> 진주고·부산대·건국대 총동문회 부회장</li>
+            </ul>
         </div>
+        <div class="signature">한국자산관리원 원장 고종완</div>
+      </article>
+    </div>
+  </section>
+</main>
 
-        <div class="greeting-text">
-
-            <h2>안녕하십니까.</h2>
-
-            <p>
-                한국자산관리원 홈페이지를 방문해 주셔서 진심으로 감사드립니다.
-            </p>
-
-            <p>
-                저희는 부동산 자산관리 전문기관으로
-                전세사기 예방, 투자, 경·공매, NPL,
-                상속·증여, 임대차 컨설팅 등
-                고객의 자산을 종합적으로 관리하고 있습니다.
-            </p>
-
-            <p>
-                법률, 세무, 감정평가, 건축 등
-                각 분야 전문가와 협업하여
-                고객에게 최적의 솔루션을 제공합니다.
-            </p>
-
-            <h3>한국자산관리원</h3>
-
-        </div>
-
-    </section>
-
-    <script>
-        fetch("./header.html")
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error("header.html을 찾을 수 없습니다.");
-                }
-
-                return response.text();
-            })
-            .then(html => {
-                document.getElementById("header-container").innerHTML = html;
-            })
-            .catch(error => {
-                console.error("헤더 불러오기 오류:", error);
-            });
-    </script>
-
+<div id="site-footer"></div>
 </body>
 </html>

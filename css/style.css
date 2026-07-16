@@ -1,0 +1,114 @@
+:root{
+  --primary:#78963f;
+  --primary-dark:#5f7a2f;
+  --primary-soft:#edf3e5;
+  --text:#20231f;
+  --muted:#666d64;
+  --line:#dfe4dc;
+  --bg:#f7f8f5;
+  --white:#fff;
+  --shadow:0 14px 36px rgba(30,40,25,.10);
+  --radius:18px;
+  --max:1200px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  color:var(--text);
+  background:#fff;
+  font-family:"Noto Sans KR",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  line-height:1.7;
+}
+img{max-width:100%;display:block}
+a{color:inherit}
+button,input,textarea,select{font:inherit}
+.container{width:min(calc(100% - 40px),var(--max));margin:auto}
+.section{padding:90px 0}
+.section-sm{padding:60px 0}
+.section-heading{margin-bottom:36px}
+.section-heading .eyebrow{color:var(--primary-dark);font-weight:800;letter-spacing:.08em}
+.section-heading h2{font-size:clamp(30px,4vw,48px);line-height:1.25;margin:8px 0 12px}
+.section-heading p{margin:0;color:var(--muted);font-size:18px}
+.page-hero{
+  padding:78px 0;
+  background:linear-gradient(135deg,var(--primary-soft),#fff);
+  border-bottom:1px solid var(--line);
+}
+.page-hero h1{font-size:clamp(36px,5vw,58px);margin:0 0 10px}
+.page-hero p{font-size:18px;color:var(--muted);margin:0}
+
+/* Header */
+.site-header{
+  position:sticky;top:0;z-index:1000;
+  background:rgba(255,255,255,.96);
+  border-bottom:1px solid rgba(0,0,0,.06);
+  backdrop-filter:blur(12px);
+}
+.header-inner{
+  width:min(calc(100% - 40px),1320px);
+  min-height:78px;margin:auto;
+  display:flex;align-items:center;justify-content:space-between;gap:30px;
+}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;font-weight:900;font-size:24px;white-space:nowrap}
+.brand img{width:54px;height:54px;object-fit:contain}
+.main-nav{display:flex;align-items:center;gap:28px}
+.main-nav a{text-decoration:none;font-weight:700;font-size:16px;white-space:nowrap;position:relative}
+.main-nav a:not(.nav-cta)::after{
+  content:"";position:absolute;left:0;right:100%;bottom:-8px;height:2px;background:var(--primary);
+  transition:right .2s ease
+}
+.main-nav a:hover::after,.main-nav a.active::after{right:0}
+.main-nav a.active{color:var(--primary-dark)}
+.nav-cta{
+  background:var(--primary);color:#fff!important;padding:11px 19px;border-radius:999px;
+  box-shadow:0 8px 20px rgba(120,150,63,.25)
+}
+.nav-cta:hover{background:var(--primary-dark)}
+.menu-toggle{display:none;background:none;border:0;padding:8px;cursor:pointer}
+.menu-toggle span{display:block;width:25px;height:2px;background:#222;margin:6px}
+
+/* Footer */
+.site-footer{background:#1f251b;color:#e9eee5;padding:45px 0}
+.footer-inner{
+  width:min(calc(100% - 40px),var(--max));margin:auto;
+  display:flex;justify-content:space-between;gap:40px;align-items:flex-start
+}
+.site-footer strong{font-size:22px}
+.site-footer p{margin:6px 0;color:#c7d0c1}
+.footer-info{text-align:right}
+
+/* Buttons/cards */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  min-height:48px;padding:0 22px;border-radius:999px;text-decoration:none;font-weight:800;
+  border:1px solid transparent;cursor:pointer
+}
+.btn-primary{background:var(--primary);color:#fff}
+.btn-primary:hover{background:var(--primary-dark)}
+.btn-outline{border-color:var(--primary);color:var(--primary-dark);background:#fff}
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+
+/* Responsive */
+@media (max-width: 980px){
+  .menu-toggle{display:block}
+  .main-nav{
+    display:none;position:absolute;top:78px;left:0;right:0;background:#fff;
+    padding:18px 20px 28px;border-bottom:1px solid var(--line);
+    flex-direction:column;align-items:stretch;gap:0;box-shadow:var(--shadow)
+  }
+  .main-nav.open{display:flex}
+  .main-nav a{padding:14px 8px;border-bottom:1px solid #eef0eb}
+  .nav-cta{text-align:center;margin-top:12px;border-bottom:0!important}
+}
+@media (max-width: 700px){
+  .container,.header-inner,.footer-inner{width:min(calc(100% - 28px),var(--max))}
+  .section{padding:64px 0}
+  .section-sm{padding:45px 0}
+  .header-inner{min-height:68px}
+  .brand{font-size:19px}
+  .brand img{width:44px;height:44px}
+  .main-nav{top:68px}
+  .footer-inner{flex-direction:column}
+  .footer-info{text-align:left}
+}
