@@ -67,17 +67,61 @@
 /* Experts */
 .expert-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
 .expert-card{overflow:hidden}
-.expert-card img{width:100%;aspect-ratio:4/5;object-fit:cover;background:#e8edde}
+.expert-card img{
+    width:100%;
+    height:420px;
+    object-fit:cover;
+    object-position:top center;
+    display:block;
+    background:#e8edde;
+    flex-shrink:0;
+}
 .expert-body{padding:24px}
 .expert-body h2{margin:0 0 5px;font-size:25px}
 .expert-role{color:var(--primary-dark);font-weight:800;margin-bottom:14px}
 .expert-body ul{padding-left:20px;color:var(--muted);margin:0}
+.expert-photo{
+    width:100%;
+    height:420px;
+    object-fit:cover;
+}
+
+.expert-photo.top{
+    object-position:center top;
+}
+
+.expert-photo.center{
+    object-position:center 25%;
+}
+
+.expert-photo.low{
+    object-position:center 40%;
+}
 
 /* Services */
 .service-list{display:grid;gap:34px}
-.service-item{display:grid;grid-template-columns:1fr 1fr;overflow:hidden}
-.service-item:nth-child(even) .service-image{order:2}
-.service-image img{width:100%;height:400px;min-height:330px;object-fit:cover;object-position:top}
+.service-item{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    overflow:hidden;
+}
+
+.service-item:nth-child(even) .service-image{
+    order:2;
+}
+
+.service-image{
+    width:100%;
+    height:100%;
+}
+
+.service-image img{
+    width:100%;
+    height:100%;
+    display:block;
+    object-fit:cover;
+    object-position:top;
+}
 .service-copy{padding:46px;display:flex;flex-direction:column;justify-content:center}
 .service-copy .number{font-size:14px;font-weight:900;color:var(--primary);letter-spacing:.12em}
 .service-copy h2{font-size:32px;margin:8px 0 14px}
@@ -100,8 +144,20 @@
 .info-panel dl{margin:0}
 .info-panel dt{font-weight:900;margin-top:18px;color:var(--primary-dark)}
 .info-panel dd{margin:4px 0 0;color:var(--muted)}
-.map-panel{padding:0;overflow:hidden;border-radius:18px}
-.map-panel img{width:100%;height:100%;object-fit:cover;display:block}
+.map-panel{
+    display:flex;
+    flex-direction:column;
+    gap:30px;
+    overflow:visible;
+}
+.map-panel .card{
+    overflow:hidden;
+}
+.map-panel img{
+    width:100%;
+    height:auto;
+    display:block;
+}
 .map-actions{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap}
 
 /* Consultation */
