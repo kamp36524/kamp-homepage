@@ -77,11 +77,21 @@
 .service-list{display:grid;gap:34px}
 .service-item{display:grid;grid-template-columns:1fr 1fr;overflow:hidden}
 .service-item:nth-child(even) .service-image{order:2}
-.service-image img{width:100%;height:100%;min-height:330px;object-fit:cover}
+.service-image img{width:100%;height:400px;min-height:330px;object-fit:cover;object-position:top}
 .service-copy{padding:46px;display:flex;flex-direction:column;justify-content:center}
 .service-copy .number{font-size:14px;font-weight:900;color:var(--primary);letter-spacing:.12em}
 .service-copy h2{font-size:32px;margin:8px 0 14px}
 .service-copy p{color:var(--muted);margin:0}
+.service-link{
+    display:block;
+    text-decoration:none;
+    color:inherit;
+}
+.service-link:hover .card{
+    transform:translateY(-8px);
+    transition:.3s;
+    box-shadow:0 20px 40px rgba(0,0,0,.15);
+}
 
 /* Location */
 .location-grid{display:grid;grid-template-columns:380px 1fr;gap:40px;align-items:stretch}
@@ -110,6 +120,60 @@
 .form-message.show{display:block}
 .form-message.error{background:#fff0f0;color:#a82d2d}
 .form-message.success{background:#eff8e7;color:#496b20}
+
+/* Seminar */
+
+.seminar-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(350px,1fr));
+    gap:40px;
+}
+.seminar-card{
+    display:block;
+    text-decoration:none;
+    color:#222;
+    transition:.3s;
+}
+.seminar-card:hover{
+    transform:translateY(-8px);
+}
+.seminar-card h3{
+    margin-top:20px;
+    font-size:22px;
+    font-weight:700;
+    line-height:1.5;
+    text-align:center;
+    color:#222;
+}
+.seminar-image{
+    width:100%;
+    aspect-ratio:3/4;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    overflow:hidden;
+
+    border-radius:16px;
+    background:#fff;
+
+    box-shadow:0 15px 40px rgba(0,0,0,.12);
+}
+
+.seminar-image img{
+    max-width:100%;
+    max-height:100%;
+
+    width:auto;
+    height:auto;
+
+    object-fit:contain;
+}
+.seminar-end{
+    cursor:default;
+}
+.seminar-end img{ opacity:.65; }
 
 /* Responsive */
 @media(max-width:900px){
