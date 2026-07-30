@@ -228,30 +228,13 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 28px;
+    align-items: start;
 }
-.expert-card {
+.expert-card.card {
     display: grid;
     grid-template-columns: 200px 1fr;
     overflow: hidden;
     min-height: 280px;
-}
-.expert-body {
-    padding: 24px;
-    min-width: 0;
-}
-.expert-body h2 {
-    margin: 0 0 5px;
-    font-size: 25px;
-}
-.expert-role {
-    color: var(--primary-dark);
-    font-weight: 800;
-    margin-bottom: 14px;
-}
-.expert-body ul {
-    padding-left: 20px;
-    color: var(--muted);
-    margin: 0;
 }
 .expert-photo {
     width: 100%;
@@ -261,15 +244,16 @@
     display: block;
     background: #e8edde;
 }
-.expert-photo.top {
-    object-position: center top;
+.expert-photo.top    { object-position: center top; }
+.expert-photo.center { object-position: center 25%; }
+.expert-photo.low    { object-position: center 40%; }
+.expert-body {
+    padding: 24px;
+    min-width: 0;
 }
-.expert-photo.center {
-    object-position: center 25%;
-}
-.expert-photo.low {
-    object-position: center 40%;
-}
+.expert-body h2   { margin: 0 0 5px; font-size: 25px; }
+.expert-role      { color: var(--primary-dark); font-weight: 800; margin-bottom: 14px; }
+.expert-body ul   { padding-left: 20px; color: var(--muted); margin: 0; }
 
 /* ============================================
    Services
@@ -535,10 +519,7 @@
     .career-list {
         grid-template-columns: 1fr;
     }
-    .expert-photo {
-        width: 150px;
-        flex: 0 0 150px;
-    }
+    .expert-photo { }
 }
 
 @media (max-width: 700px) {
@@ -568,16 +549,10 @@
 }
 
 @media (max-width: 640px) {
-    .expert-grid {
+    .expert-card.card {
         grid-template-columns: 1fr;
     }
-    .expert-card {
-        flex-direction: column;
-    }
-    .expert-card img,
     .expert-photo {
-        width: 100%;
-        flex: 0 0 auto;
         height: 260px;
     }
     .service-item {
