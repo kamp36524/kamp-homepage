@@ -233,7 +233,8 @@
     display: flex;
     overflow: hidden;
     align-items: flex-start;
-    align-items: stretch;
+    min-height: 280px;
+    height: 100%;
 }
 .expert-body {
     padding: 24px;
@@ -257,8 +258,8 @@
 .expert-photo {
     width: 200px;
     flex: 0 0 200px;
-    height: 240px;
-    align-self: auto;
+    height: auto;
+    align-self: stretch;
     object-fit: cover;
     object-position: top center;
     display: block;
