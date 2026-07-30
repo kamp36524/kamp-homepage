@@ -232,8 +232,8 @@
 .expert-card {
     display: flex;
     overflow: hidden;
-    align-items: flex-start;
     align-items: stretch;
+    height: 100%;
 }
 .expert-body {
     padding: 24px;
@@ -257,8 +257,8 @@
 .expert-photo {
     width: 200px;
     flex: 0 0 200px;
-    height: 240px;
-    align-self: auto;
+    height: auto;
+    align-self: stretch;
     object-fit: cover;
     object-position: top center;
     display: block;
@@ -577,7 +577,6 @@
     .expert-card {
         flex-direction: column;
     }
-    .expert-card img,
     .expert-photo {
         width: 100%;
         flex: 0 0 auto;
