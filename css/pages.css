@@ -231,15 +231,14 @@
 }
 .expert-card {
     display: flex;
+    position: relative;
     overflow: hidden;
-    align-items: flex-start;
     min-height: 280px;
-    height: 100%;
 }
 .expert-body {
-    padding: 24px;
     flex: 1;
     min-width: 0;
+    padding: 24px;
 }
 .expert-body h2 {
     margin: 0 0 5px;
@@ -258,7 +257,6 @@
 .expert-photo {
     width: 200px;
     flex: 0 0 200px;
-    height: auto;
     align-self: stretch;
     object-fit: cover;
     object-position: top center;
