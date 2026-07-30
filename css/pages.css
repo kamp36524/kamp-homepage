@@ -230,15 +230,14 @@
     gap: 28px;
 }
 .expert-card {
-    display: flex;
-    position: relative;
+    display: grid;
+    grid-template-columns: 200px 1fr;
     overflow: hidden;
     min-height: 280px;
 }
 .expert-body {
-    flex: 1;
-    min-width: 0;
     padding: 24px;
+    min-width: 0;
 }
 .expert-body h2 {
     margin: 0 0 5px;
@@ -255,9 +254,8 @@
     margin: 0;
 }
 .expert-photo {
-    width: 200px;
-    flex: 0 0 200px;
-    align-self: stretch;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
     object-position: top center;
     display: block;
