@@ -255,13 +255,15 @@
     margin: 0;
 }
 .expert-photo {
-        width: 100%;
-        flex: 0 0 auto;
-        height: auto;
-        aspect-ratio: 3 / 4;
-        object-fit: cover;
-        object-position: center top;
-    }
+    width: 200px;
+    flex: 0 0 200px;
+    height: auto;
+    align-self: stretch;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+    background: #e8edde;
+}
 .expert-photo.top {
     object-position: center top;
 }
@@ -578,7 +580,8 @@
     .expert-photo {
         width: 100%;
         flex: 0 0 auto;
-        height: 260px;
+        height: auto;
+        aspect-ratio: 3 / 4;       
     }
     .service-item {
         grid-template-columns: 1fr;
