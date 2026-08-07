@@ -38,6 +38,10 @@ button,input,textarea,select{font:inherit}
 .page-hero h1{font-size:clamp(36px,5vw,58px);margin:0 0 10px}
 .page-hero p{font-size:18px;color:var(--muted);margin:0}
 
+body {
+    word-break: keep-all;
+}
+
 /* Header */
 .site-header{
   position:sticky;top:0;z-index:1000;
