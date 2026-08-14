@@ -231,9 +231,17 @@
 }
 .expert-card {
     display: flex;
+    flex-direction: column;
     overflow: hidden;
-    align-items: flex-start;
     height: 100%;
+}
+.expert-photo {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    background: #e8edde;
 }
 .expert-body {
     padding: 24px;
@@ -253,17 +261,6 @@
     padding-left: 20px;
     color: var(--muted);
     margin: 0;
-}
-.expert-photo {
-    width: 200px;
-    flex: 0 0 200px;
-    aspect-ratio: 3 / 4;
-    height: auto;
-    align-self: flex-start;
-    object-fit: cover;
-    object-position: top center;
-    display: block;
-    background: #e8edde;
 }
 .expert-photo.top {
     object-position: center top;
@@ -539,10 +536,6 @@
     .career-list {
         grid-template-columns: 1fr;
     }
-    .expert-photo {
-        width: 150px;
-        flex: 0 0 150px;
-    }
 }
 
 @media (max-width: 700px) {
@@ -574,15 +567,6 @@
 @media (max-width: 640px) {
     .expert-grid {
         grid-template-columns: 1fr;
-    }
-    .expert-card {
-        flex-direction: column;
-    }
-    .expert-photo {
-        width: 100%;
-        flex: 0 0 auto;
-        height: auto;
-        aspect-ratio: 3 / 4;       
     }
     .service-item {
         grid-template-columns: 1fr;
