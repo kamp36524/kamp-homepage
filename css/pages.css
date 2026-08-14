@@ -232,7 +232,7 @@
 .expert-card {
     display: flex;
     overflow: hidden;
-    align-items: stretch;
+    align-items: flex-start;
     height: 100%;
 }
 .expert-body {
@@ -257,8 +257,9 @@
 .expert-photo {
     width: 200px;
     flex: 0 0 200px;
+    aspect-ratio: 3 / 4;
     height: auto;
-    align-self: stretch;
+    align-self: flex-start;
     object-fit: cover;
     object-position: top center;
     display: block;
