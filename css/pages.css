@@ -231,39 +231,43 @@
 }
 .expert-card {
     display: flex;
+    flex-direction: column;
     overflow: hidden;
-    align-items: flex-start;
     height: 100%;
-}
-.expert-body {
     padding: 24px;
-    flex: 1;
+}
+.expert-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 18px;
+}
+.expert-photo {
+    width: 120px;
+    flex: 0 0 120px;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    background: #e8edde;
+    border-radius: 12px;
+}
+.expert-heading {
     min-width: 0;
 }
-.expert-body h2 {
-    margin: 0 0 5px;
+.expert-heading h2 {
+    margin: 0 0 8px;
     font-size: 25px;
 }
 .expert-role {
     color: var(--primary-dark);
     font-weight: 800;
-    margin-bottom: 14px;
+    margin: 0;
 }
-.expert-body ul {
+.expert-card ul {
     padding-left: 20px;
     color: var(--muted);
     margin: 0;
-}
-.expert-photo {
-    width: 200px;
-    flex: 0 0 200px;
-    aspect-ratio: 3 / 4;
-    height: auto;
-    align-self: flex-start;
-    object-fit: cover;
-    object-position: top center;
-    display: block;
-    background: #e8edde;
 }
 .expert-photo.top {
     object-position: center top;
@@ -539,10 +543,6 @@
     .career-list {
         grid-template-columns: 1fr;
     }
-    .expert-photo {
-        width: 150px;
-        flex: 0 0 150px;
-    }
 }
 
 @media (max-width: 700px) {
@@ -574,15 +574,6 @@
 @media (max-width: 640px) {
     .expert-grid {
         grid-template-columns: 1fr;
-    }
-    .expert-card {
-        flex-direction: column;
-    }
-    .expert-photo {
-        width: 100%;
-        flex: 0 0 auto;
-        height: auto;
-        aspect-ratio: 3 / 4;       
     }
     .service-item {
         grid-template-columns: 1fr;
