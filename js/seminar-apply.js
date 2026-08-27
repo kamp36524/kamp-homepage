@@ -9,14 +9,30 @@
    ===================================================================== */
 const SEMINARS = {
   "npl-intro": {
-    title: "경매 &amp; NPL 입문",
-    summary: "/images/seminar/seminar-4.png",
-    info: "부동산 경매·NPL 투자의 기초부터 실전 감각까지 한 번에 잡는 입문 과정입니다.<br>아래에서 참석 가능한 일정을 선택해 신청해 주세요.",
-    // TODO: 실제 강의 일자로 교체하세요.
+    title: "경매 &amp; NPL 입문과정",
+    summary: "/images/seminar/npl-intro-detail.png",
+    info:
+      '<h3>강의 참가비</h3>' +
+      '<ul>' +
+        '<li>경매 입문과정 2주 <b>30만원</b> (부가세 포함)</li>' +
+        '<li>NPL 입문과정 2주 <b>30만원</b> (부가세 포함)</li>' +
+      '</ul>' +
+      '<p class="info-note">* 고함방 오픈채팅방 참여자 대상 각 과정 50% 할인 (15만원)<br>' +
+      '* 공인중개사 대상 각 과정 80% 할인 (6만원)</p>' +
+      '<h3>정원</h3>' +
+      '<p>각 20명 (선착순)</p>' +
+      '<h3>&ldquo;고종완과 함께&rdquo; 오픈채팅방</h3>' +
+      '<p><a href="https://open.kakao.com/o/g1mUmyui" target="_blank" rel="noopener">open.kakao.com/o/g1mUmyui</a></p>' +
+      '<h3>오시는 길</h3>' +
+      '<p>호텔 더 디자이너스 리즈강남프리미어 B1F [Joie de Vivre]<br>' +
+      '<span class="info-sub">강남구 선릉로 806 · 유료 주차 가능</span></p>' +
+      '<img class="info-map" src="/images/seminar/npl-intro-map.png" alt="오시는 길 지도" onerror="this.style.display=\'none\'">' +
+      '<p><a href="https://map.kakao.com/?q=%ED%98%B8%ED%85%94%20%EB%8D%94%20%EB%94%94%EC%9E%90%EC%9D%B4%EB%84%88%EC%8A%A4%20%EB%A6%AC%EC%A6%88%EA%B0%95%EB%82%A8%ED%94%84%EB%A6%AC%EB%AF%B8%EC%96%B4" target="_blank" rel="noopener">카카오맵에서 위치 보기 →</a></p>',
     dates: [
-      "2026-09-06 (토) 14:00",
-      "2026-09-13 (토) 14:00",
-      "2026-09-20 (토) 14:00"
+      "경매 입문 1주차 (8/24)",
+      "경매 입문 2주차 (8/31)",
+      "NPL 입문 1주차 (9/14)",
+      "NPL 입문 2주차 (9/21)"
     ]
   }
 };
@@ -50,6 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
   document.title = seminar.title.replace(/&amp;/g, "&") + " 신청 | 한국자산관리원";
 
   if (seminar.summary) {
+    imgEl.onerror = () => { imgEl.hidden = true; };
     imgEl.src = seminar.summary;
     imgEl.alt = seminar.title.replace(/&amp;/g, "&") + " 안내 이미지";
     imgEl.hidden = false;
@@ -76,6 +93,14 @@ document.addEventListener("DOMContentLoaded", () => {
     // 일자 목록이 없으면 날짜 선택 없이 신청
     dateList.innerHTML = '<p class="date-empty">별도 지정 일정 없이 신청이 접수됩니다.</p>';
   }
+
+  // 결제 방법: 두 체크박스는 하나만 선택되도록 처리
+  const payChecks = form.querySelectorAll('input[name="payment"]');
+  payChecks.forEach((box) => {
+    box.addEventListener("change", () => {
+      if (box.checked) payChecks.forEach((o) => { if (o !== box) o.checked = false; });
+    });
+  });
 
   // 제출
   form.addEventListener("submit", async (event) => {

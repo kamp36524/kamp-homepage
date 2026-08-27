@@ -1,38 +1,48 @@
-# 세미나 신청 → Google Sheet 연동 설정 가이드
+# 세미나 신청 → (기존) Google Sheet 저장 설정 가이드
 
-세미나 신청 폼(`seminar-apply.html`)에서 받은 신청 정보를 Google Sheet에 자동 저장하기 위한 설정입니다.
-기존 상담 폼(`consult.html`)과 동일한 방식(Google Apps Script 웹앱)입니다.
+세미나 신청 폼(`seminar-apply.html`)에서 받은 정보를 **기존에 쓰시던 Google Sheet 문서에 새 탭으로** 저장합니다.
+기존 상담 폼 연동을 건드리지 않도록, **별도의 독립 Apps Script**를 하나 더 만들어 같은 스프레드시트에 기록하는 방식입니다.
 
-## 1. Google Sheet 준비
+## 1. 스프레드시트 ID 확인
 
-1. 새 Google Sheet를 만듭니다. (예: `KAMP 세미나 신청`)
-2. 1행에 아래 헤더를 입력합니다.
+기존에 쓰시는 Google Sheet를 열고 주소에서 ID를 복사합니다.
 
-| 접수시각 | 세미나 | 이름 | 연락처 | 신청일 | 개인정보동의 |
-|----------|--------|------|--------|--------|--------------|
+```
+https://docs.google.com/spreadsheets/d/★여기가_스프레드시트_ID★/edit
+```
 
-## 2. Apps Script 작성
+## 2. 독립 Apps Script 만들기
 
-1. 그 Sheet에서 **확장 프로그램 → Apps Script** 를 엽니다.
-2. 기본 코드를 지우고 아래 코드를 붙여넣습니다. (이 Sheet에 연결된 스크립트라 Sheet ID를 따로 넣지 않아도 됩니다.)
+1. https://script.google.com 접속 → **새 프로젝트**
+2. 아래 코드를 붙여넣고, `SHEET_ID` 에 위에서 복사한 ID를 넣습니다.
+3. 저장합니다. (이 스크립트는 새 탭 `세미나신청` 을 자동으로 만들어 기록합니다. 상담 폼과는 완전히 분리됩니다.)
 
 ```javascript
+var SHEET_ID = '여기에_스프레드시트_ID';
+var TAB_NAME = '세미나신청';
+
 function doPost(e) {
   var lock = LockService.getScriptLock();
   lock.waitLock(30000);
   try {
-    var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheets()[0];
+    var ss = SpreadsheetApp.openById(SHEET_ID);
+    var sheet = ss.getSheetByName(TAB_NAME);
+    if (!sheet) {
+      sheet = ss.insertSheet(TAB_NAME);
+      sheet.appendRow(['접수시각', '세미나', '이름', '연락처', '신청일', '결제방법', '개인정보동의']);
+    }
     var p = (e && e.parameter) ? e.parameter : {};
-    // 신청일은 체크박스 다중 선택 → 배열로 들어옵니다.
     var dates = (e && e.parameters && e.parameters.dates) ? e.parameters.dates.join(', ') : '';
+    var payment = (e && e.parameters && e.parameters.payment) ? e.parameters.payment.join(', ') : '';
 
     sheet.appendRow([
-      new Date(),                       // 접수시각
-      p.seminarTitle || '',             // 세미나
-      p.name || '',                     // 이름
-      p.phone || '',                    // 연락처
-      dates,                            // 신청일
-      p.privacy_agreement ? '동의' : '' // 개인정보동의
+      new Date(),
+      p.seminarTitle || '',
+      p.name || '',
+      p.phone || '',
+      dates,
+      payment,
+      p.privacy_agreement ? '동의' : ''
     ]);
 
     return ContentService
@@ -50,45 +60,58 @@ function doPost(e) {
 
 ## 3. 웹앱으로 배포
 
-1. 우측 상단 **배포 → 새 배포** 클릭
-2. 유형 선택(톱니바퀴) → **웹 앱**
-3. 설정
-   - **실행 계정**: 나
-   - **액세스 권한**: **모든 사용자** (익명 신청을 받으려면 필수)
-4. **배포**를 누르고 권한을 승인합니다.
-5. 생성된 **웹 앱 URL**을 복사합니다. (형식: `https://script.google.com/macros/s/XXXXXXXX/exec`)
+1. 우측 상단 **배포 → 새 배포** → 유형 **웹 앱**
+2. **실행 계정: 나** / **액세스 권한: 모든 사용자**
+3. **배포** 후 권한 승인 → 생성된 **웹 앱 URL**(`.../exec`) 복사
+   - 처음 실행 시 다른 문서(스프레드시트)에 접근하는 권한을 승인해야 합니다.
 
-> 코드를 수정할 때마다 **배포 → 배포 관리 → 편집(연필) → 버전: 새 버전 → 배포**로 갱신해야 반영됩니다.
+> 코드 수정 시 **배포 → 배포 관리 → 편집(연필) → 새 버전 → 배포**로 갱신해야 반영됩니다.
 
 ## 4. 홈페이지에 URL 연결
 
-`seminar-apply.html` 의 아래 부분에서 `action=""` 안에 복사한 URL을 넣습니다.
+`seminar-apply.html` 의 아래 부분 `action=""` 에 복사한 URL을 넣습니다. (URL만 주시면 제가 넣어 드립니다.)
 
 ```html
-<form id="apply-form" class="consult-form card" action="여기에_웹앱_URL_붙여넣기" method="POST" novalidate>
+<form id="apply-form" class="consult-form card" action="여기에_웹앱_URL" method="POST" novalidate>
 ```
 
-URL만 알려주시면 제가 대신 넣어 커밋해 드릴 수 있습니다.
+---
 
-## 5. 세미나 정보 수정 방법
+## (대안) 상담 폼과 같은 스크립트/URL을 재사용하고 싶다면
 
-세미나 목록/내용은 `js/seminar-apply.js` 상단의 `SEMINARS` 객체에서 관리합니다.
+기존 상담 Apps Script의 `doPost` 를 아래처럼 분기 처리하면 URL 하나로 상담·세미나를 모두 받을 수 있습니다.
+다만 기존 상담 기록 로직을 직접 수정해야 하므로, 위의 **독립 스크립트 방식(권장)** 이 더 안전합니다.
 
 ```javascript
-const SEMINARS = {
-  "npl-intro": {                              // ← 세미나 목록 카드 링크의 ?id= 값과 일치
-    title: "경매 &amp; NPL 입문",             // 제목
-    summary: "/images/seminar/seminar-4.png", // 정보 요약 이미지 경로
-    info: "…설명 텍스트(HTML 가능, 없으면 '')…",
-    dates: [                                   // 강의 일자 (중복 선택 가능, 빈 배열이면 날짜 선택 없음)
-      "2026-09-06 (토) 14:00",
-      "2026-09-13 (토) 14:00"
-    ]
+function doPost(e) {
+  var p = e.parameter || {};
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  if (p.formType === 'seminar') {
+    var sh = ss.getSheetByName('세미나신청') || ss.insertSheet('세미나신청');
+    if (sh.getLastRow() === 0) sh.appendRow(['접수시각','세미나','이름','연락처','신청일','결제방법','개인정보동의']);
+    var dates = (e.parameters.dates || []).join(', ');
+    var payment = (e.parameters.payment || []).join(', ');
+    sh.appendRow([new Date(), p.seminarTitle||'', p.name||'', p.phone||'', dates, payment, p.privacy_agreement?'동의':'']);
+  } else {
+    /* ↓↓↓ 기존 상담 저장 로직을 그대로 두세요 ↓↓↓ */
   }
-  // 세미나를 추가하려면 새 id 항목을 넣고,
-  // seminar.html 카드 링크를 href="/seminar-apply?id=새id" 로 연결하세요.
-};
+  return ContentService.createTextOutput(JSON.stringify({result:'success'})).setMimeType(ContentService.MimeType.JSON);
+}
 ```
 
-- **정보 요약 이미지**를 별도로 만들면 `/images/seminar/`에 올리고 `summary` 경로를 바꾸면 됩니다.
-- **강의 일자(dates)** 는 실제 일정으로 교체해 주세요. (현재는 예시 값)
+---
+
+## 세미나 정보 수정 방법
+
+`js/seminar-apply.js` 상단 `SEMINARS` 객체에서 관리합니다.
+
+- `summary`: 상세 이미지 경로 (`/images/seminar/npl-intro-detail.png`)
+- `info`: 이미지 아래 안내 텍스트(HTML)
+- `dates`: 신청 가능한 강의 일자 (중복 선택 가능)
+
+## 필요한 이미지 파일
+
+아래 파일을 `images/seminar/` 에 올리면 자동으로 노출됩니다. (없어도 페이지는 정상 동작)
+
+- `npl-intro-detail.png` — 세미나 상세(요약) 이미지 **(필수)**
+- `npl-intro-map.png` — 오시는 길 지도 이미지 (선택, 없으면 지도 링크만 표시)

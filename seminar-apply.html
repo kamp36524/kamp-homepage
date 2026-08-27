@@ -45,16 +45,31 @@
       <form id="apply-form" class="consult-form card" action="" method="POST" novalidate>
         <input type="hidden" id="seminarId" name="seminarId" value="">
         <input type="hidden" id="seminarTitle" name="seminarTitle" value="">
+        <input type="hidden" name="formType" value="seminar">
 
         <div class="form-grid">
           <div class="form-field"><label for="name">이름 *</label><input id="name" name="name" required></div>
           <div class="form-field"><label for="phone">연락처 *</label><input id="phone" name="phone" type="tel" inputmode="numeric" placeholder="010-0000-0000" required></div>
 
           <div class="form-field full">
-            <label>신청일 * <span class="field-hint">(중복 선택 가능)</span></label>
+            <label>신청일 * <span class="field-hint">(중복 선택 가능 · 매 회차 오후 6:30~9:30)</span></label>
             <div id="date-list" class="date-list">
               <p class="date-empty">신청 가능한 일정을 불러오는 중입니다…</p>
             </div>
+          </div>
+        </div>
+
+        <div class="pay-box">
+          <div class="pay-title">참가비 입금</div>
+          <p class="pay-desc">계좌이체만 가능합니다. 아래 계좌로 참가비를 입금해주세요.</p>
+          <div class="pay-account">
+            <span class="pay-bank">카카오뱅크</span>
+            <span class="pay-num">3333176075511</span>
+            <span class="pay-holder">예금주 고재심</span>
+          </div>
+          <div class="pay-options">
+            <label class="pay-option"><input type="checkbox" name="payment" value="입금 완료"><span>입금 완료</span></label>
+            <label class="pay-option"><input type="checkbox" name="payment" value="현장에서 현금 결제"><span>현장에서 현금 결제</span></label>
           </div>
         </div>
 
