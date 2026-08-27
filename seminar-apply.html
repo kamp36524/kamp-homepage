@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/pages.css">
+<script src="/js/include.js" defer></script>
+<title>세미나 신청 | 한국자산관리원</title>
+<meta name="description" content="한국자산관리원 공식 홈페이지">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-F693QRY7NB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-F693QRY7NB');
+  </script>
+</head>
+<body>
+<div id="site-header"></div>
+<main>
+  <section class="page-hero"><div class="container"><h1>세미나 신청</h1><p>세미나 정보를 확인하고 신청서를 작성해 주세요.</p></div></section>
+  <section class="section">
+    <div class="container seminar-apply-layout">
+
+      <aside class="seminar-apply-info">
+        <a class="seminar-back" href="/seminar">← 세미나 목록으로</a>
+        <h2 id="seminar-title">세미나 신청</h2>
+        <div class="seminar-summary-wrap">
+          <img id="seminar-summary" class="seminar-summary-image" src="" alt="세미나 안내 이미지" hidden>
+        </div>
+        <div id="seminar-info-text" class="seminar-info-text" hidden></div>
+      </aside>
+
+      <!--
+        TODO: action 값을 세미나 신청용 Google Apps Script 웹앱 URL(/exec)로 교체하세요.
+        (설정 방법은 저장소의 docs/seminar-apps-script.md 참고)
+      -->
+      <form id="apply-form" class="consult-form card" action="" method="POST" novalidate>
+        <input type="hidden" id="seminarId" name="seminarId" value="">
+        <input type="hidden" id="seminarTitle" name="seminarTitle" value="">
+
+        <div class="form-grid">
+          <div class="form-field"><label for="name">이름 *</label><input id="name" name="name" required></div>
+          <div class="form-field"><label for="phone">연락처 *</label><input id="phone" name="phone" type="tel" inputmode="numeric" placeholder="010-0000-0000" required></div>
+
+          <div class="form-field full">
+            <label>신청일 * <span class="field-hint">(중복 선택 가능)</span></label>
+            <div id="date-list" class="date-list">
+              <p class="date-empty">신청 가능한 일정을 불러오는 중입니다…</p>
+            </div>
+          </div>
+        </div>
+
+        <label class="agreement"><input type="checkbox" name="privacy_agreement" required><span>개인정보 수집·이용 및 신청 연락에 동의합니다. (수집 항목: 이름, 연락처 / 목적: 세미나 신청 확인·안내 / 보유기간: 세미나 종료 후 1년)</span></label>
+        <button class="btn btn-primary" type="submit">세미나 신청하기</button>
+        <div id="form-message" class="form-message" role="status"></div>
+      </form>
+
+    </div>
+  </section>
+</main>
+<script src="/js/seminar-apply.js" defer></script>
+
+<div id="site-footer"></div>
+</body>
+</html>

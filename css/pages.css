@@ -468,6 +468,97 @@
     background: #eff8e7;
     color: #496b20;
 }
+.field-hint {
+    font-weight: 500;
+    font-size: 14px;
+    color: var(--muted);
+}
+
+/* ============================================
+   Seminar apply
+   ============================================ */
+.seminar-apply-layout {
+    display: grid;
+    grid-template-columns: .9fr 1.1fr;
+    gap: 42px;
+    align-items: start;
+}
+.seminar-apply-info {
+    padding: 30px;
+    background: #f8f9f6;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+}
+.seminar-back {
+    display: inline-block;
+    margin-bottom: 16px;
+    color: var(--primary-dark);
+    font-weight: 700;
+    text-decoration: none;
+}
+.seminar-back:hover {
+    text-decoration: underline;
+}
+.seminar-apply-info h2 {
+    margin: 0 0 20px;
+    font-size: 26px;
+    color: #173052;
+}
+.seminar-summary-wrap {
+    border-radius: 14px;
+    overflow: hidden;
+}
+.seminar-summary-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 14px;
+    background: #fff;
+}
+.seminar-info-text {
+    margin-top: 20px;
+    color: #40473d;
+    font-size: 16px;
+    line-height: 1.7;
+}
+.date-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.date-option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    border: 1px solid #cfd5cb;
+    border-radius: 10px;
+    background: #fff;
+    cursor: pointer;
+    transition: border-color .2s, background .2s;
+}
+.date-option:hover {
+    border-color: var(--primary);
+}
+.date-option input {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--primary);
+    flex: 0 0 auto;
+}
+.date-option:has(input:checked) {
+    border-color: var(--primary);
+    background: var(--primary-soft);
+    font-weight: 700;
+}
+.date-empty {
+    margin: 0;
+    padding: 14px 16px;
+    color: var(--muted);
+    background: #fff;
+    border: 1px dashed #cfd5cb;
+    border-radius: 10px;
+}
 
 /* ============================================
    Seminar
@@ -533,7 +624,8 @@
     }
     .greeting-layout,
     .location-grid,
-    .consult-layout {
+    .consult-layout,
+    .seminar-apply-layout {
         grid-template-columns: 1fr;
     }
     .career-list {
