@@ -3,22 +3,25 @@
 세미나 신청 폼(`seminar-apply.html`)에서 받은 정보를 **기존에 쓰시던 Google Sheet 문서에 새 탭으로** 저장합니다.
 기존 상담 폼 연동을 건드리지 않도록, **별도의 독립 Apps Script**를 하나 더 만들어 같은 스프레드시트에 기록하는 방식입니다.
 
-## 1. 스프레드시트 ID 확인
+## 1. 준비
 
-기존에 쓰시는 Google Sheet를 열고 주소에서 ID를 복사합니다.
+저장할 문서는 아래로 지정되어 있습니다. (스크립트에 이미 반영됨)
 
 ```
-https://docs.google.com/spreadsheets/d/★여기가_스프레드시트_ID★/edit
+https://docs.google.com/spreadsheets/d/1iJyFYgTjymPwo45TEbbZia5U-gfLO_o1bdL-X-91vI4/edit
 ```
+
+> **공유 권한은 따로 필요 없습니다.** 이 문서를 편집할 수 있는 본인 구글 계정으로 아래 스크립트를 만들면 됩니다.
+> 웹앱을 "실행 계정: 나(Me)"로 배포하므로, 신청자(익명)나 외부에 문서를 공개할 필요가 없습니다.
 
 ## 2. 독립 Apps Script 만들기
 
-1. https://script.google.com 접속 → **새 프로젝트**
-2. 아래 코드를 붙여넣고, `SHEET_ID` 에 위에서 복사한 ID를 넣습니다.
+1. 위 문서를 편집할 수 있는 **본인 구글 계정으로 로그인**한 상태에서 https://script.google.com 접속 → **새 프로젝트**
+2. 아래 코드를 그대로 붙여넣습니다. (SHEET_ID가 이미 채워져 있습니다.)
 3. 저장합니다. (이 스크립트는 새 탭 `세미나신청` 을 자동으로 만들어 기록합니다. 상담 폼과는 완전히 분리됩니다.)
 
 ```javascript
-var SHEET_ID = '여기에_스프레드시트_ID';
+var SHEET_ID = '1iJyFYgTjymPwo45TEbbZia5U-gfLO_o1bdL-X-91vI4'; // 신청 저장용 문서
 var TAB_NAME = '세미나신청';
 
 function doPost(e) {
