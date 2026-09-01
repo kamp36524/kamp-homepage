@@ -6,3 +6,4 @@ wrangler.toml
 *.log
 node_modules
 README.md
+docs
