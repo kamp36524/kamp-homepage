@@ -38,11 +38,8 @@
         <div id="seminar-info-text" class="seminar-info-text" hidden></div>
       </aside>
 
-      <!--
-        TODO: action 값을 세미나 신청용 Google Apps Script 웹앱 URL(/exec)로 교체하세요.
-        (설정 방법은 저장소의 docs/seminar-apps-script.md 참고)
-      -->
-      <form id="apply-form" class="consult-form card" action="" method="POST" novalidate>
+      <!-- 신청 데이터 저장: Google Apps Script 웹앱 (설정: docs/seminar-apps-script.md) -->
+      <form id="apply-form" class="consult-form card" action="https://script.google.com/macros/s/AKfycbyOa6kyS9-kg37LvtDON_1na-ABr8fzR1UuhovpDJEiWFRK6TkF9R44_Z_ZJ7dEMXa0zQ/exec" method="POST" novalidate>
         <input type="hidden" id="seminarId" name="seminarId" value="">
         <input type="hidden" id="seminarTitle" name="seminarTitle" value="">
         <input type="hidden" name="formType" value="seminar">
