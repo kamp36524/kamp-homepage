@@ -29,10 +29,8 @@ const SEMINARS = {
       '<img class="info-map" src="/images/seminar/npl-intro-map.png" alt="오시는 길 지도" onerror="this.style.display=\'none\'">' +
       '<p><a href="https://map.kakao.com/?q=%ED%98%B8%ED%85%94%20%EB%8D%94%20%EB%94%94%EC%9E%90%EC%9D%B4%EB%84%88%EC%8A%A4%20%EB%A6%AC%EC%A6%88%EA%B0%95%EB%82%A8%ED%94%84%EB%A6%AC%EB%AF%B8%EC%96%B4" target="_blank" rel="noopener">카카오맵에서 위치 보기 →</a></p>',
     dates: [
-      "경매 입문 1주차 (8/24)",
-      "경매 입문 2주차 (8/31)",
-      "NPL 입문 1주차 (9/14)",
-      "NPL 입문 2주차 (9/21)"
+      "경매 입문 과정 (8/24, 8/31)",
+      "NPL 입문 과정 (9/14, 9/21)"
     ]
   }
 };
