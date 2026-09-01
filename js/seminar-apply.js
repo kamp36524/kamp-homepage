@@ -134,9 +134,11 @@ document.addEventListener("DOMContentLoaded", () => {
     try {
       // Google Apps Script 웹앱은 CORS 응답 헤더를 제공하지 않으므로 no-cors로 전송합니다.
       // (응답 본문은 읽을 수 없어 opaque 처리되며, 데이터는 정상 전송됩니다.)
+      // FormData(multipart) 대신 x-www-form-urlencoded 로 전송하면 Apps Script가
+      // e.parameter / e.parameters 로 안정적으로 파싱합니다. (체크박스 다중값 유지)
       await fetch(endpoint, {
         method: "POST",
-        body: new FormData(form),
+        body: new URLSearchParams(new FormData(form)),
         mode: "no-cors"
       });
 
