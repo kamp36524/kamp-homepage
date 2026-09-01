@@ -132,12 +132,13 @@ document.addEventListener("DOMContentLoaded", () => {
     submitButton.textContent = "접수 중...";
 
     try {
-      const response = await fetch(endpoint, {
+      // Google Apps Script 웹앱은 CORS 응답 헤더를 제공하지 않으므로 no-cors로 전송합니다.
+      // (응답 본문은 읽을 수 없어 opaque 처리되며, 데이터는 정상 전송됩니다.)
+      await fetch(endpoint, {
         method: "POST",
         body: new FormData(form),
-        headers: { "Accept": "application/json" }
+        mode: "no-cors"
       });
-      if (!response.ok) throw new Error("접수 실패");
 
       form.reset();
       showMessage(message, "success", "세미나 신청이 접수되었습니다. 확인 후 안내드리겠습니다.");
