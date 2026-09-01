@@ -102,6 +102,15 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  // 연락처: 입력 시 자동으로 010-0000-0000 형식으로 하이픈 삽입
+  const phoneInput = form.phone;
+  phoneInput.addEventListener("input", () => {
+    const d = phoneInput.value.replace(/\D/g, "").slice(0, 11);
+    if (d.length < 4) phoneInput.value = d;
+    else if (d.length < 8) phoneInput.value = d.slice(0, 3) + "-" + d.slice(3);
+    else phoneInput.value = d.slice(0, 3) + "-" + d.slice(3, 7) + "-" + d.slice(7);
+  });
+
   // 제출
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
@@ -118,6 +127,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const phone = form.phone.value.trim();
     if (!name) return showMessage(message, "error", "이름을 입력해 주세요.");
     if (!phone) return showMessage(message, "error", "연락처를 입력해 주세요.");
+
+    // 연락처: 010 형식(휴대폰) 검증 후 하이픈 형태로 정규화하여 저장
+    const phoneDigits = phone.replace(/\D/g, "");
+    if (!/^01[0-9]\d{7,8}$/.test(phoneDigits)) {
+      return showMessage(message, "error", "연락처를 010-0000-0000 형식으로 정확히 입력해 주세요.");
+    }
+    form.phone.value = phoneDigits.replace(/^(\d{3})(\d{3,4})(\d{4})$/, "$1-$2-$3");
 
     if (dates.length) {
       const checked = form.querySelectorAll('input[name="dates"]:checked');

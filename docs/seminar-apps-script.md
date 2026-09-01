@@ -22,31 +22,33 @@ https://docs.google.com/spreadsheets/d/1iJyFYgTjymPwo45TEbbZia5U-gfLO_o1bdL-X-91
 
 ```javascript
 var SHEET_ID = '1iJyFYgTjymPwo45TEbbZia5U-gfLO_o1bdL-X-91vI4'; // 신청 저장용 문서
-var TAB_NAME = '세미나신청';
+var TAB_RAW = '세미나신청';   // 원본: 한 신청 = 한 행 (신청일 여러 개는 한 칸에)
+var TAB_BYDATE = '일자별신청'; // 정리: 신청일마다 한 행 (신청일 기준 정렬)
 
 function doPost(e) {
   var lock = LockService.getScriptLock();
   lock.waitLock(30000);
   try {
     var ss = SpreadsheetApp.openById(SHEET_ID);
-    var sheet = ss.getSheetByName(TAB_NAME);
-    if (!sheet) {
-      sheet = ss.insertSheet(TAB_NAME);
-      sheet.appendRow(['접수시각', '세미나', '이름', '연락처', '신청일', '결제방법', '개인정보동의']);
-    }
     var p = (e && e.parameter) ? e.parameter : {};
-    var dates = (e && e.parameters && e.parameters.dates) ? e.parameters.dates.join(', ') : '';
+    var dateArr = (e && e.parameters && e.parameters.dates) ? e.parameters.dates : [];
     var payment = (e && e.parameters && e.parameters.payment) ? e.parameters.payment.join(', ') : '';
+    var now = new Date();
+    var agree = p.privacy_agreement ? '동의' : '';
 
-    sheet.appendRow([
-      new Date(),
-      p.seminarTitle || '',
-      p.name || '',
-      p.phone || '',
-      dates,
-      payment,
-      p.privacy_agreement ? '동의' : ''
-    ]);
+    // 1) 원본 로그: 한 신청 = 한 행
+    var raw = getSheet_(ss, TAB_RAW, ['접수시각', '세미나', '이름', '연락처', '신청일', '결제방법', '개인정보동의']);
+    raw.appendRow([now, p.seminarTitle || '', p.name || '', p.phone || '', dateArr.join(', '), payment, agree]);
+
+    // 2) 일자별 정리: 선택한 신청일마다 한 행씩 → 신청일 기준 정렬
+    var byDate = getSheet_(ss, TAB_BYDATE, ['신청일', '세미나', '이름', '연락처', '결제방법', '접수시각']);
+    var list = dateArr.length ? dateArr : [''];
+    list.forEach(function (d) {
+      byDate.appendRow([d, p.seminarTitle || '', p.name || '', p.phone || '', payment, now]);
+    });
+    if (byDate.getLastRow() > 2) {
+      byDate.getRange(2, 1, byDate.getLastRow() - 1, byDate.getLastColumn()).sort({ column: 1, ascending: true });
+    }
 
     return ContentService
       .createTextOutput(JSON.stringify({ result: 'success' }))
@@ -60,20 +62,26 @@ function doPost(e) {
   }
 }
 
+function getSheet_(ss, name, headers) {
+  var sh = ss.getSheetByName(name);
+  if (!sh) {
+    sh = ss.insertSheet(name);
+    sh.appendRow(headers);
+  }
+  return sh;
+}
+
 // 권한 승인 + 연결 확인용. 편집기에서 이 함수를 한 번 실행(▶)하세요.
-// 실행하면 (1) 다른 문서 접근 권한 승인창이 뜨고 (2) '세미나신청' 탭에 확인용 행이 추가됩니다.
 function test() {
   var ss = SpreadsheetApp.openById(SHEET_ID);
-  var sheet = ss.getSheetByName(TAB_NAME);
-  if (!sheet) {
-    sheet = ss.insertSheet(TAB_NAME);
-    sheet.appendRow(['접수시각', '세미나', '이름', '연락처', '신청일', '결제방법', '개인정보동의']);
-  }
-  sheet.appendRow([new Date(), '(연결 테스트)', '테스트', '-', '-', '-', '-']);
+  var sh = getSheet_(ss, TAB_RAW, ['접수시각', '세미나', '이름', '연락처', '신청일', '결제방법', '개인정보동의']);
+  sh.appendRow([new Date(), '(연결 테스트)', '테스트', '-', '-', '-', '-']);
 }
 ```
 
-> **먼저 `test()` 함수를 실행(▶)해 권한을 승인하세요.** 실행 후 그 문서에 `세미나신청` 탭과 테스트 행이 생기면 스크립트–시트 연결이 정상입니다. (테스트 행은 지우시면 됩니다.) 이 승인을 하지 않으면 웹앱에서 `openById` 가 실패해 아무 것도 기록되지 않습니다.
+> **먼저 `test()` 함수를 실행(▶)해 권한을 승인하세요.** 실행 후 그 문서에 탭과 테스트 행이 생기면 스크립트–시트 연결이 정상입니다. (테스트 행은 지우시면 됩니다.)
+>
+> **신청일별 정리:** 신청이 들어오면 `세미나신청`(원본)에 한 행, `일자별신청`에는 **선택한 날짜마다 한 행**씩 쌓이고 신청일 기준으로 자동 정렬됩니다. 각 강의일자별 참석자 명단은 `일자별신청` 탭에서 확인하세요.
 
 ## 3. 웹앱으로 배포
 
