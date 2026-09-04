@@ -18,12 +18,10 @@ https://docs.google.com/spreadsheets/d/1iJyFYgTjymPwo45TEbbZia5U-gfLO_o1bdL-X-91
 
 1. 위 문서를 편집할 수 있는 **본인 구글 계정으로 로그인**한 상태에서 https://script.google.com 접속 → **새 프로젝트**
 2. 아래 코드를 그대로 붙여넣습니다. (SHEET_ID가 이미 채워져 있습니다.)
-3. 저장합니다. (이 스크립트는 새 탭 `세미나신청` 을 자동으로 만들어 기록합니다. 상담 폼과는 완전히 분리됩니다.)
+3. 저장합니다. (이 스크립트는 **강의명으로 된 탭**을 자동으로 만들어, 신청일마다 한 행씩 기록합니다. 상담 폼과는 완전히 분리됩니다.)
 
 ```javascript
 var SHEET_ID = '1iJyFYgTjymPwo45TEbbZia5U-gfLO_o1bdL-X-91vI4'; // 신청 저장용 문서
-var TAB_RAW = '세미나신청';   // 원본: 한 신청 = 한 행 (신청일 여러 개는 한 칸에)
-var TAB_BYDATE = '일자별신청'; // 정리: 신청일마다 한 행 (신청일 기준 정렬)
 
 function doPost(e) {
   var lock = LockService.getScriptLock();
@@ -36,18 +34,16 @@ function doPost(e) {
     var now = new Date();
     var agree = p.privacy_agreement ? '동의' : '';
 
-    // 1) 원본 로그: 한 신청 = 한 행
-    var raw = getSheet_(ss, TAB_RAW, ['접수시각', '세미나', '이름', '연락처', '신청일', '결제방법', '개인정보동의']);
-    raw.appendRow([now, p.seminarTitle || '', p.name || '', p.phone || '', dateArr.join(', '), payment, agree]);
+    // 탭 이름 = 강의명. 신청일마다 한 행씩 쌓고 신청일 기준으로 정렬.
+    var tabName = (p.seminarTitle || '세미나신청').substring(0, 90);
+    var sheet = getSheet_(ss, tabName, ['신청일', '이름', '연락처', '결제방법', '개인정보동의', '접수시각']);
 
-    // 2) 일자별 정리: 선택한 신청일마다 한 행씩 → 신청일 기준 정렬
-    var byDate = getSheet_(ss, TAB_BYDATE, ['신청일', '세미나', '이름', '연락처', '결제방법', '접수시각']);
     var list = dateArr.length ? dateArr : [''];
     list.forEach(function (d) {
-      byDate.appendRow([d, p.seminarTitle || '', p.name || '', p.phone || '', payment, now]);
+      sheet.appendRow([d, p.name || '', p.phone || '', payment, agree, now]);
     });
-    if (byDate.getLastRow() > 2) {
-      byDate.getRange(2, 1, byDate.getLastRow() - 1, byDate.getLastColumn()).sort({ column: 1, ascending: true });
+    if (sheet.getLastRow() > 2) {
+      sheet.getRange(2, 1, sheet.getLastRow() - 1, sheet.getLastColumn()).sort({ column: 1, ascending: true });
     }
 
     return ContentService
@@ -74,14 +70,14 @@ function getSheet_(ss, name, headers) {
 // 권한 승인 + 연결 확인용. 편집기에서 이 함수를 한 번 실행(▶)하세요.
 function test() {
   var ss = SpreadsheetApp.openById(SHEET_ID);
-  var sh = getSheet_(ss, TAB_RAW, ['접수시각', '세미나', '이름', '연락처', '신청일', '결제방법', '개인정보동의']);
-  sh.appendRow([new Date(), '(연결 테스트)', '테스트', '-', '-', '-', '-']);
+  var sh = getSheet_(ss, '경매 & NPL 입문과정', ['신청일', '이름', '연락처', '결제방법', '개인정보동의', '접수시각']);
+  sh.appendRow(['(연결 테스트)', '테스트', '-', '-', '-', new Date()]);
 }
 ```
 
 > **먼저 `test()` 함수를 실행(▶)해 권한을 승인하세요.** 실행 후 그 문서에 탭과 테스트 행이 생기면 스크립트–시트 연결이 정상입니다. (테스트 행은 지우시면 됩니다.)
 >
-> **신청일별 정리:** 신청이 들어오면 `세미나신청`(원본)에 한 행, `일자별신청`에는 **선택한 날짜마다 한 행**씩 쌓이고 신청일 기준으로 자동 정렬됩니다. 각 강의일자별 참석자 명단은 `일자별신청` 탭에서 확인하세요.
+> **정리 방식:** 신청이 들어오면 **강의명(예: `경매 & NPL 입문과정`)으로 된 탭**에, 선택한 **신청일마다 한 행**씩 쌓이고 신청일 기준으로 자동 정렬됩니다. (별도 원본/요약 탭은 만들지 않습니다.) 강의가 여러 개면 각 강의명 탭이 따로 생성됩니다.
 
 ## 3. 웹앱으로 배포
 
@@ -94,7 +90,7 @@ function test() {
 
 ## 문제 해결 (신청은 되는데 시트에 안 쌓일 때)
 
-`세미나신청` 탭조차 안 생긴다면 아래를 순서대로 확인하세요.
+강의명 탭조차 안 생긴다면 아래를 순서대로 확인하세요.
 
 1. **권한 승인** — 편집기에서 위 `test()` 함수를 **실행(▶)**. 권한창이 뜨면 모두 허용.
    → 탭과 테스트 행이 생기면 시트 연결 정상. (안 생기면 로그인 계정이 그 문서 편집 권한이 있는지 확인)
