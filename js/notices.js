@@ -200,7 +200,12 @@
   function fail(board, preview) { setMsg(board, "공지사항을 불러오지 못했습니다. 잠시 후 다시 시도해 주세요."); setMsg(preview, "공지사항을 불러오지 못했습니다."); }
   function esc(s) { return String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
   function bodyHtml(s) {
-    return esc(s).replace(/\r\n|\r|\n/g, "<br>")
-      .replace(/(https?:\/\/[^\s<]+)/g, '<a href="$1" target="_blank" rel="noopener">$1</a>');
+    var out = esc(s).replace(/\r\n|\r|\n/g, "<br>");
+    // http(s):// 링크, www. 링크, 그리고 스킴 없는 도메인(.com/.kr/.kakao 등)도 자동 링크
+    var re = /(https?:\/\/[^\s<]+)|(www\.[^\s<]+)|([a-zA-Z0-9][a-zA-Z0-9.\-]*\.(?:com|net|org|io|me|tv|info|biz|kr|kakao)(?:\/[^\s<]*)?)/g;
+    return out.replace(re, function (m) {
+      var href = /^https?:\/\//i.test(m) ? m : "https://" + m;
+      return '<a href="' + href + '" target="_blank" rel="noopener">' + m + "</a>";
+    });
   }
 })();
