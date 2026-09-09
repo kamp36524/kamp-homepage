@@ -308,6 +308,9 @@
     object-fit: cover;
     object-position: right;
 }
+.service-image img.is-center {
+    object-position: center;
+}
 .service-copy {
     padding: 28px 26px;
     display: flex;
