@@ -1295,3 +1295,10 @@
     color: #20231f;
     font-weight: 800;
 }
+
+.clinic-subheading {
+    text-align: center;
+    font-size: 22px;
+    color: #173052;
+    margin: 50px 0 24px;
+}
