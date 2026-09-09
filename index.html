@@ -136,18 +136,31 @@
       <div class="notice-backdrop" data-close></div>
       <div class="notice-card notice-card--image">
         <button type="button" class="notice-x" data-close aria-label="닫기">&times;</button>
-        <a class="notice-image-link" href="/notices.html">
+        <a class="notice-image-link" href="/notices.html" data-notice-open>
           <img class="notice-image" src="/images/notice/deepfake-notice.png" alt="[안내] 한국자산관리원 고종완 원장님 사칭(딥페이크) 주의">
         </a>
         <div class="notice-bar">
           <label class="notice-hide"><input type="checkbox" id="notice-hide-today"> 오늘 하루 보지 않기</label>
           <div class="notice-bar-btns">
-            <a class="btn btn-outline" href="/notices.html">공지사항 보기</a>
+            <a class="btn btn-outline" href="/notices.html" data-notice-open>공지 자세히 보기</a>
             <button type="button" class="btn btn-primary" data-close>확인</button>
           </div>
         </div>
       </div>
     </div>
+    <!-- 공지 상세 모달 (팝업/미리보기에서 공지글 열람) -->
+    <div id="notice-modal" class="notice-modal" role="dialog" aria-modal="true" aria-labelledby="nm-title">
+      <div class="nm-backdrop" data-close></div>
+      <div class="nm-card">
+        <button type="button" class="nm-x" data-close aria-label="닫기">&times;</button>
+        <h2 id="nm-title" class="nm-title"></h2>
+        <div class="nm-date"></div>
+        <div class="nm-divider"></div>
+        <div class="nm-body"></div>
+        <div class="nm-actions"><button type="button" class="btn btn-primary" data-close>닫기</button></div>
+      </div>
+    </div>
+
     <script src="/js/notice-popup.js" defer></script>
     <script src="/js/notices.js" defer></script>
 </body>

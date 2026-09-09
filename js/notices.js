@@ -42,10 +42,44 @@
     }, function () { fail(board, preview); });
   });
 
+  var _items = null;
+
   function handle(items, board, preview) {
     items.sort(sortNotices);
+    _items = items;
     if (board) renderBoard(board, items);
     if (preview) renderPreview(preview, items.slice(0, CFG.previewCount));
+    wirePopup();
+  }
+
+  // 홈 공지 팝업의 링크를 눌렀을 때 해당 공지글을 상세 모달로 바로 열기
+  function wirePopup() {
+    var triggers = document.querySelectorAll("[data-notice-open]");
+    for (var i = 0; i < triggers.length; i++) {
+      (function (t) {
+        if (t.__wired) return; t.__wired = true;
+        t.addEventListener("click", function (e) {
+          var it = pickPopupNotice(_items);
+          if (!it) return; // 공지 로드 전/없음 → href(/notices.html)로 이동
+          e.preventDefault();
+          var pop = document.getElementById("notice-popup");
+          if (pop) pop.classList.remove("open");
+          openModal(it);
+        });
+      })(triggers[i]);
+    }
+  }
+
+  function pickPopupNotice(items) {
+    if (!items || !items.length) return null;
+    var kws = ["딥페이크", "사칭"];
+    for (var i = 0; i < items.length; i++) {
+      for (var k = 0; k < kws.length; k++) {
+        if ((items[i].title || "").indexOf(kws[k]) >= 0) return items[i];
+      }
+    }
+    for (var j = 0; j < items.length; j++) if (items[j].pinned) return items[j];
+    return items[0];
   }
 
   /* ---------- Google Charts 로더 ---------- */
