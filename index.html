@@ -118,20 +118,13 @@
 
     <div id="site-footer"></div>
 
-    <!-- 공지 팝업: 딥페이크 사칭 주의 -->
-    <div id="notice-popup" class="notice-popup" role="dialog" aria-modal="true" aria-labelledby="notice-title">
+    <!-- 공지 팝업: 딥페이크 사칭 주의 (이미지형) -->
+    <div id="notice-popup" class="notice-popup" role="dialog" aria-modal="true" aria-label="한국자산관리원 공지">
       <div class="notice-backdrop" data-close></div>
-      <div class="notice-card">
+      <div class="notice-card notice-card--image">
         <button type="button" class="notice-x" data-close aria-label="닫기">&times;</button>
-        <span class="notice-badge">NOTICE</span>
-        <h2 id="notice-title" class="notice-heading">[안내] 한국자산관리원 고종완 원장님 사칭 주의 안내</h2>
-        <div class="notice-divider"></div>
-        <p class="notice-body">
-          최근 한국자산관리원 고종완 원장님을 사칭한 딥페이크 영상이 유포되고 있음을 확인한 바,
-          <strong>딥페이크 영상으로 인한 사기</strong>에 주의를 부탁드립니다.
-        </p>
-        <div class="notice-warn" aria-hidden="true">⚠️</div>
-        <div class="notice-actions">
+        <img class="notice-image" src="/images/notice/deepfake-notice.png" alt="[안내] 한국자산관리원 고종완 원장님 사칭(딥페이크) 주의">
+        <div class="notice-bar">
           <label class="notice-hide"><input type="checkbox" id="notice-hide-today"> 오늘 하루 보지 않기</label>
           <button type="button" class="btn btn-primary" data-close>확인</button>
         </div>
