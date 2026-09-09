@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/pages.css">
+<script src="/js/include.js" defer></script>
+<title>공지사항 | 한국자산관리원</title>
+<meta name="description" content="한국자산관리원 공지사항">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-F693QRY7NB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-F693QRY7NB');
+  </script>
+</head>
+<body>
+<div id="site-header"></div>
+<main>
+  <section class="page-hero"><div class="container"><h1>공지사항</h1><p>한국자산관리원의 소식과 안내를 확인하세요.</p></div></section>
+  <section class="section">
+    <div class="container">
+      <ul id="notice-list" class="notice-board">
+        <li class="notice-empty">공지사항을 불러오는 중입니다…</li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<!-- 상세 모달 -->
+<div id="notice-modal" class="notice-modal" role="dialog" aria-modal="true" aria-labelledby="nm-title">
+  <div class="nm-backdrop" data-close></div>
+  <div class="nm-card">
+    <button type="button" class="nm-x" data-close aria-label="닫기">&times;</button>
+    <h2 id="nm-title" class="nm-title"></h2>
+    <div class="nm-date"></div>
+    <div class="nm-divider"></div>
+    <div class="nm-body"></div>
+    <div class="nm-actions"><button type="button" class="btn btn-primary" data-close>닫기</button></div>
+  </div>
+</div>
+
+<script src="/js/notices.js" defer></script>
+<div id="site-footer"></div>
+</body>
+</html>
