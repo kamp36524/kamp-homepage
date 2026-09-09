@@ -32,7 +32,7 @@
     loadCharts(function () {
       try {
         var url = "https://docs.google.com/spreadsheets/d/" + CFG.sheetId +
-                  "/gviz/tq?sheet=" + encodeURIComponent(CFG.sheetName);
+                  "/gviz/tq?headers=1&sheet=" + encodeURIComponent(CFG.sheetName);
         var query = new google.visualization.Query(url);
         query.send(function (resp) {
           if (!resp || resp.isError()) { fail(board, preview); return; }
@@ -70,10 +70,18 @@
     var tC = pick(idx, ["제목", "title"]);
     var bC = pick(idx, ["내용", "본문", "content"]);
     var pC = pick(idx, ["고정", "중요", "pin"]);
+    // 헤더 라벨 인식이 실패하면 열 순서(날짜|제목|내용|고정)로 대체
+    if (tC == null) {
+      dC = cols > 0 ? 0 : null;
+      tC = cols > 1 ? 1 : null;
+      bC = cols > 2 ? 2 : null;
+      pC = cols > 3 ? 3 : null;
+    }
     var out = [];
     for (var r = 0; r < rows; r++) {
       var title = tC != null ? String(dt.getFormattedValue(r, tC) || "").trim() : "";
       if (!title) continue;
+      if (title === "제목") continue; // 헤더 행이 데이터로 섞인 경우 방지
       out.push({
         date: dC != null ? String(dt.getFormattedValue(r, dC) || "").trim() : "",
         title: title,
