@@ -1302,3 +1302,131 @@
     color: #173052;
     margin: 50px 0 24px;
 }
+
+/* KAMP 클리닉 — 프로그램 개요 패널 (프로그램 카드와 다른 디자인) */
+.clinic-overview {
+    display: grid;
+    grid-template-columns: .85fr 1.15fr;
+    background: linear-gradient(135deg, #f2f6ea, #eaf0dd);
+    border: 1px solid #dbe6c6;
+    border-radius: 20px;
+    overflow: hidden;
+}
+.overview-recommend,
+.overview-steps {
+    padding: 38px 40px;
+}
+.overview-steps {
+    background: rgba(255, 255, 255, .55);
+    border-left: 1px solid #dbe6c6;
+}
+.overview-eyebrow {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: .14em;
+    color: var(--primary-dark);
+    background: #fff;
+    border: 1px solid #dbe6c6;
+    border-radius: 999px;
+    padding: 5px 13px;
+    margin-bottom: 14px;
+}
+.overview-recommend h3,
+.overview-steps h3 {
+    margin: 0 0 22px;
+    font-size: 22px;
+    color: #173052;
+}
+.check-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.check-list li {
+    position: relative;
+    padding-left: 36px;
+    margin-bottom: 16px;
+    font-size: 16px;
+    line-height: 1.55;
+    color: #3a4234;
+    font-weight: 500;
+}
+.check-list li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    top: -1px;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: var(--primary);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.step-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.step-list li {
+    position: relative;
+    display: flex;
+    gap: 16px;
+    padding-bottom: 22px;
+}
+.step-list li:last-child {
+    padding-bottom: 0;
+}
+.step-list li:not(:last-child)::before {
+    content: "";
+    position: absolute;
+    left: 18px;
+    top: 40px;
+    bottom: 0;
+    width: 2px;
+    background: #cfe0b0;
+}
+.step-num {
+    flex: 0 0 auto;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: var(--primary);
+    color: #fff;
+    font-weight: 900;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+.step-body {
+    display: flex;
+    flex-direction: column;
+    padding-top: 4px;
+}
+.step-body b {
+    font-size: 17px;
+    color: #20231f;
+    font-weight: 800;
+}
+.step-body span {
+    color: #5b6152;
+    font-size: 15px;
+    line-height: 1.55;
+    margin-top: 2px;
+}
+@media (max-width: 760px) {
+    .clinic-overview {
+        grid-template-columns: 1fr;
+    }
+    .overview-steps {
+        border-left: 0;
+        border-top: 1px solid #dbe6c6;
+    }
+}
