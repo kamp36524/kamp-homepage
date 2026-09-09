@@ -7,7 +7,7 @@
    ===================================================================== */
 (function () {
   var CFG = {
-    sheetId: "",            // TODO: 공지사항 스프레드시트 ID
+    sheetId: "1ZzSS3VLhrPxN93C8w9EIVTIcTu3kf4UdAf7H97yLTfY", // 공지사항 스프레드시트
     sheetName: "공지사항",   // 탭(시트) 이름
     previewCount: 3         // 홈 미리보기 개수
   };
