@@ -1273,3 +1273,25 @@
         grid-template-columns: 1fr;
     }
 }
+
+/* KAMP 클리닉 — 상담 프로그램 상세 */
+.clinic-subtitle {
+    text-align: center;
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--primary-dark);
+    margin: -14px 0 30px;
+}
+.clinic-steps {
+    margin: 0;
+    padding-left: 20px;
+    color: #4f554d;
+}
+.clinic-steps li {
+    margin-bottom: 10px;
+    line-height: 1.65;
+}
+.clinic-steps b {
+    color: #20231f;
+    font-weight: 800;
+}
