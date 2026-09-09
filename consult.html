@@ -41,7 +41,7 @@
             <label for="category">상담 분야 *</label>
             <select id="category" name="category" required>
               <option value="">선택해 주세요</option>
-              <option>KAMP 세미나</option><option>KAMP 경매</option><option>자산관리</option>
+              <option>KAMP 세미나</option><option>KAMP 클리닉</option><option>KAMP 경매</option><option>자산관리</option>
               <option>법률·세무 자문</option><option>재건축·재개발 자문</option><option>기타</option>
             </select>
           </div>
@@ -55,6 +55,20 @@
   </section>
 </main>
 <script src="/js/form.js" defer></script>
+<script>
+  // 다른 페이지에서 ?category=... 로 진입 시 상담 분야 자동 선택
+  document.addEventListener("DOMContentLoaded", function () {
+    try {
+      var cat = new URLSearchParams(location.search).get("category");
+      if (!cat) return;
+      var sel = document.getElementById("category");
+      if (!sel) return;
+      for (var i = 0; i < sel.options.length; i++) {
+        if (sel.options[i].value === cat || sel.options[i].text === cat) { sel.selectedIndex = i; break; }
+      }
+    } catch (e) {}
+  });
+</script>
 
 <div id="site-footer"></div>
 </body>
