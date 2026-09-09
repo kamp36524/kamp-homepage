@@ -136,10 +136,15 @@
       <div class="notice-backdrop" data-close></div>
       <div class="notice-card notice-card--image">
         <button type="button" class="notice-x" data-close aria-label="닫기">&times;</button>
-        <img class="notice-image" src="/images/notice/deepfake-notice.png" alt="[안내] 한국자산관리원 고종완 원장님 사칭(딥페이크) 주의">
+        <a class="notice-image-link" href="/notices.html">
+          <img class="notice-image" src="/images/notice/deepfake-notice.png" alt="[안내] 한국자산관리원 고종완 원장님 사칭(딥페이크) 주의">
+        </a>
         <div class="notice-bar">
           <label class="notice-hide"><input type="checkbox" id="notice-hide-today"> 오늘 하루 보지 않기</label>
-          <button type="button" class="btn btn-primary" data-close>확인</button>
+          <div class="notice-bar-btns">
+            <a class="btn btn-outline" href="/notices.html">공지사항 보기</a>
+            <button type="button" class="btn btn-primary" data-close>확인</button>
+          </div>
         </div>
       </div>
     </div>
