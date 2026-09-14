@@ -40,18 +40,14 @@
         <div class="container">
             <h2 class="seminar-section-title">진행 중인 세미나</h2>
 
-            <a class="seminar-feature card" href="/seminar-apply?id=npl-intro">
+            <a class="seminar-feature card" id="active-seminar" href="/seminar-apply?id=npl-intro">
                 <div class="feature-image">
-                    <img src="/images/seminar/seminar-4.png" alt="경매 & NPL 입문과정">
+                    <img src="" alt="">
                 </div>
                 <div class="feature-body">
                     <span class="feature-badge">진행 중 · 신청 접수</span>
-                    <h3>경매 &amp; NPL 입문과정</h3>
-                    <ul class="feature-meta">
-                        <li><b>일정</b><span>경매 8/24·8/31 · NPL 9/14·9/21 (오후 6:30~9:30)</span></li>
-                        <li><b>장소</b><span>호텔 더 디자이너스 리즈강남프리미어 B1F</span></li>
-                        <li><b>참가비</b><span>각 과정 2주 30만원 (부가세 포함) · 할인 별도</span></li>
-                    </ul>
+                    <h3 class="feature-title"></h3>
+                    <ul class="feature-meta"></ul>
                     <span class="btn btn-primary feature-cta">신청하기 →</span>
                 </div>
             </a>
@@ -65,20 +61,23 @@
                 <div class="seminar-card seminar-end">
                     <div class="seminar-image">
                         <img src="/images/seminar/seminar-1.png" alt="">
+                        <span class="seminar-status ended">종료</span>
                     </div>
-                    <h3>KAMP 세미나 (종료)</h3>
+                    <h3>KAMP 세미나</h3>
                 </div>
                 <div class="seminar-card seminar-end">
                     <div class="seminar-image">
                         <img src="/images/seminar/seminar-2.webp" alt="">
+                        <span class="seminar-status ended">종료</span>
                     </div>
-                    <h3>KAMP 특강 (종료)</h3>
+                    <h3>KAMP 특강</h3>
                 </div>
                 <div class="seminar-card seminar-end">
                     <div class="seminar-image">
                         <img src="/images/seminar/seminar-3.png" alt="">
+                        <span class="seminar-status ended">종료</span>
                     </div>
-                    <h3>KAMP 세미나 (종료)</h3>
+                    <h3>KAMP 세미나</h3>
                 </div>
             </div>
         </div>
@@ -88,6 +87,8 @@
 
         <div id="site-footer"></div>
 
+<script src="/js/seminars-data.js" defer></script>
+<script src="/js/seminar-list.js" defer></script>
 </body>
 
 </html>

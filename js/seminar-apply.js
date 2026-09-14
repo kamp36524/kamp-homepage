@@ -1,39 +1,9 @@
 /* =====================================================================
    세미나 신청 페이지 로직
+   - 세미나 데이터는 js/seminars-data.js (window.SEMINARS_DATA) 에서 관리합니다.
    - URL 쿼리스트링(?id=...)으로 세미나를 선택합니다.
-   - 아래 SEMINARS 객체에 세미나를 추가/수정하면 됩니다.
-     · title   : 세미나 제목 (필수)
-     · summary : 정보 요약 이미지 경로 (필수)
-     · info    : 이미지 외에 노출할 텍스트(HTML 허용, 없으면 '' 또는 생략)
-     · dates   : 신청 가능한 강의 일자 목록(중복 선택 가능). 빈 배열이면 날짜 선택 없이 신청.
    ===================================================================== */
-const SEMINARS = {
-  "npl-intro": {
-    title: "경매 &amp; NPL 입문과정",
-    summary: "/images/seminar/npl-intro-detail.png",
-    info:
-      '<h3>강의 참가비</h3>' +
-      '<ul>' +
-        '<li>경매 입문과정 2주 <b>30만원</b> (부가세 포함)</li>' +
-        '<li>NPL 입문과정 2주 <b>30만원</b> (부가세 포함)</li>' +
-      '</ul>' +
-      '<p class="info-note">* 고함방 오픈채팅방 참여자 대상 각 과정 50% 할인 (15만원)<br>' +
-      '* 공인중개사 대상 각 과정 80% 할인 (6만원)</p>' +
-      '<h3>정원</h3>' +
-      '<p>각 20명 (선착순)</p>' +
-      '<h3>&ldquo;고종완과 함께&rdquo; 오픈채팅방</h3>' +
-      '<p><a href="https://open.kakao.com/o/g1mUmyui" target="_blank" rel="noopener">open.kakao.com/o/g1mUmyui</a></p>' +
-      '<h3>오시는 길</h3>' +
-      '<p>호텔 더 디자이너스 리즈강남프리미어 B1F [Joie de Vivre]<br>' +
-      '<span class="info-sub">강남구 선릉로 806 · 유료 주차 가능</span></p>' +
-      '<img class="info-map" src="/images/seminar/npl-intro-map.png" alt="오시는 길 지도" onerror="this.style.display=\'none\'">' +
-      '<p><a href="https://map.kakao.com/?q=%ED%98%B8%ED%85%94%20%EB%8D%94%20%EB%94%94%EC%9E%90%EC%9D%B4%EB%84%88%EC%8A%A4%20%EB%A6%AC%EC%A6%88%EA%B0%95%EB%82%A8%ED%94%84%EB%A6%AC%EB%AF%B8%EC%96%B4" target="_blank" rel="noopener">카카오맵에서 위치 보기 →</a></p>',
-    dates: [
-      "경매 입문 과정 (8/24, 8/31)",
-      "NPL 입문 과정 (9/14, 9/21)"
-    ]
-  }
-};
+const SEMINARS = window.SEMINARS_DATA || {};
 
 document.addEventListener("DOMContentLoaded", () => {
   const params = new URLSearchParams(location.search);
@@ -60,13 +30,13 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // 세미나 정보 렌더링
-  titleEl.innerHTML = seminar.title;
-  document.title = seminar.title.replace(/&amp;/g, "&") + " 신청 | 한국자산관리원";
+  titleEl.textContent = seminar.title;
+  document.title = seminar.title + " 신청 | 한국자산관리원";
 
   if (seminar.summary) {
     imgEl.onerror = () => { imgEl.hidden = true; };
     imgEl.src = seminar.summary;
-    imgEl.alt = seminar.title.replace(/&amp;/g, "&") + " 안내 이미지";
+    imgEl.alt = seminar.title + " 안내 이미지";
     imgEl.hidden = false;
   }
 
@@ -76,7 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   idField.value = id;
-  titleField.value = seminar.title.replace(/&amp;/g, "&");
+  titleField.value = seminar.title;
 
   // 신청일 체크박스 렌더링
   const dates = Array.isArray(seminar.dates) ? seminar.dates : [];

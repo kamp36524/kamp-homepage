@@ -1515,3 +1515,20 @@
         font-size: 23px;
     }
 }
+
+/* 지난 세미나 — 종료 배지 */
+.seminar-image {
+    position: relative;
+}
+.seminar-status.ended {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: rgba(32, 35, 31, .72);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 800;
+    padding: 5px 12px;
+    border-radius: 999px;
+    z-index: 1;
+}
