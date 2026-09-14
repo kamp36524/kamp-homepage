@@ -1151,6 +1151,19 @@
     border-top: 1px solid var(--line);
     margin: 16px 0;
 }
+.nm-image {
+    margin: 4px 0 18px;
+}
+.nm-image img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    border: 1px solid var(--line);
+}
+.nm-image img + img {
+    margin-top: 12px;
+}
 .nm-body {
     font-size: 16px;
     line-height: 1.8;
