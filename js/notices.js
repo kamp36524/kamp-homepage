@@ -1,7 +1,9 @@
 /* =====================================================================
    공지사항 게시판 — Google Sheet 를 데이터 소스로 사용
    ---------------------------------------------------------------------
-   · 시트 1행 헤더(정확히): 날짜 | 제목 | 내용 | 고정   (고정 열은 선택)
+   · 시트 1행 헤더(정확히): 날짜 | 제목 | 내용 | 고정 | 이미지   (고정·이미지 열은 선택)
+   · 이미지 열: 상세 모달에 표시할 이미지 주소(/images/notice/파일.png 또는 https URL).
+     줄바꿈/쉼표로 여러 장 가능. 비워두면 이미지 없이 표시.
    · 시트를 "링크가 있는 모든 사용자: 뷰어"로 공유하면 읽을 수 있습니다.
    · 아래 CFG.sheetId 에 스프레드시트 ID를 넣으세요.
    ===================================================================== */
@@ -104,12 +106,14 @@
     var tC = pick(idx, ["제목", "title"]);
     var bC = pick(idx, ["내용", "본문", "content"]);
     var pC = pick(idx, ["고정", "중요", "pin"]);
-    // 헤더 라벨 인식이 실패하면 열 순서(날짜|제목|내용|고정)로 대체
+    var iC = pick(idx, ["이미지", "사진", "image", "img"]);
+    // 헤더 라벨 인식이 실패하면 열 순서(날짜|제목|내용|고정|이미지)로 대체
     if (tC == null) {
       dC = cols > 0 ? 0 : null;
       tC = cols > 1 ? 1 : null;
       bC = cols > 2 ? 2 : null;
       pC = cols > 3 ? 3 : null;
+      iC = cols > 4 ? 4 : null;
     }
     var out = [];
     for (var r = 0; r < rows; r++) {
@@ -120,6 +124,7 @@
         date: dC != null ? String(dt.getFormattedValue(r, dC) || "").trim() : "",
         title: title,
         body: bC != null ? String(dt.getValue(r, bC) == null ? "" : dt.getValue(r, bC)) : "",
+        images: iC != null ? splitImages(dt.getFormattedValue(r, iC)) : [],
         pinned: pC != null ? isTrue(dt.getFormattedValue(r, pC)) : false,
         _sort: dC != null ? sortKey(dt.getValue(r, dC), dt.getFormattedValue(r, dC)) : 0
       });
@@ -127,6 +132,14 @@
     return out;
   }
   function pick(idx, names) { for (var i = 0; i < names.length; i++) if (idx[names[i]] != null) return idx[names[i]]; return null; }
+  // 이미지 셀: 줄바꿈/쉼표로 여러 개 구분. http(s):// 또는 / 로 시작하는 값만 사용.
+  function splitImages(s) {
+    s = String(s == null ? "" : s).trim();
+    if (!s) return [];
+    return s.split(/[\n,]+/)
+      .map(function (t) { return t.trim(); })
+      .filter(function (t) { return /^(https?:\/\/|\/)/.test(t); });
+  }
   function isTrue(v) { v = String(v || "").trim().toLowerCase(); return v === "y" || v === "true" || v === "1" || v === "o" || v === "고정" || v === "중요" || v === "✓"; }
   function sortKey(v, f) {
     if (v instanceof Date) return v.getTime();
@@ -176,11 +189,34 @@
     if (!modal) return;
     modal.querySelector(".nm-title").textContent = it.title;
     modal.querySelector(".nm-date").textContent = it.date;
+    renderImages(modal, it.images);
     modal.querySelector(".nm-body").innerHTML = bodyHtml(it.body);
     modal.classList.add("open");
     document.body.style.overflow = "hidden";
     document.addEventListener("keydown", onKey);
   }
+  // 상세 모달 안에 공지 이미지를 렌더링 (본문 위). HTML 수정 없이 컨테이너를 주입.
+  function renderImages(modal, urls) {
+    var host = modal.querySelector(".nm-image");
+    if (!host) {
+      host = document.createElement("div");
+      host.className = "nm-image";
+      var body = modal.querySelector(".nm-body");
+      body.parentNode.insertBefore(host, body);
+    }
+    host.innerHTML = "";
+    if (!urls || !urls.length) { host.hidden = true; return; }
+    host.hidden = false;
+    urls.forEach(function (u) {
+      var img = document.createElement("img");
+      img.src = u;
+      img.alt = "공지 이미지";
+      img.loading = "lazy";
+      img.onerror = function () { img.remove(); };
+      host.appendChild(img);
+    });
+  }
+
   function closeModal() {
     var modal = document.getElementById("notice-modal");
     if (!modal) return;
