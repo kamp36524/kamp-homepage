@@ -1430,3 +1430,88 @@
         border-top: 1px solid #dbe6c6;
     }
 }
+
+/* ============================================
+   Seminar — 진행 중 강조 배너
+   ============================================ */
+.seminar-section-title {
+    font-size: 26px;
+    color: #173052;
+    margin: 0 0 22px;
+}
+.seminar-feature {
+    display: grid;
+    grid-template-columns: minmax(0, 400px) 1fr;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition: transform .25s, box-shadow .25s;
+}
+.seminar-feature:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 22px 48px rgba(0, 0, 0, .14);
+}
+.feature-image {
+    background: #fff;
+    min-height: 260px;
+}
+.feature-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+.feature-body {
+    padding: 34px 38px;
+    display: flex;
+    flex-direction: column;
+}
+.feature-badge {
+    align-self: flex-start;
+    background: var(--primary);
+    color: #fff;
+    font-weight: 800;
+    font-size: 14px;
+    padding: 7px 16px;
+    border-radius: 999px;
+    margin-bottom: 16px;
+}
+.feature-body h3 {
+    font-size: 28px;
+    color: #20231f;
+    margin: 0 0 20px;
+}
+.feature-meta {
+    list-style: none;
+    margin: 0 0 26px;
+    padding: 0;
+}
+.feature-meta li {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+    color: #40473d;
+    font-size: 16px;
+    line-height: 1.6;
+}
+.feature-meta b {
+    flex: 0 0 52px;
+    color: var(--primary-dark);
+    font-weight: 800;
+}
+.feature-cta {
+    align-self: flex-start;
+    margin-top: auto;
+    padding: 12px 30px;
+}
+@media (max-width: 760px) {
+    .seminar-feature {
+        grid-template-columns: 1fr;
+    }
+    .feature-body {
+        padding: 26px 22px;
+    }
+    .feature-body h3 {
+        font-size: 23px;
+    }
+}
