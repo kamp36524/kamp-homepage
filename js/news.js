@@ -11,7 +11,7 @@
    ===================================================================== */
 (function () {
   var CFG = {
-    sheetId: "",          // KAMP 소식 스프레드시트 ID (전달받으면 입력)
+    sheetId: "1ZzSS3VLhrPxN93C8w9EIVTIcTu3kf4UdAf7H97yLTfY",  // 공지사항 문서(소식 탭)
     sheetName: "소식"     // 탭(시트) 이름
   };
 
