@@ -19,11 +19,11 @@ window.SEMINARS_DATA = {
     status: "open",
     poster: "/images/seminar/vip-tax-forum-thumb.png",
     summary: "/images/seminar/vip-tax-forum.webp",
-    schedule: "9월 28일 · 29일 · 30일 (오후 03:00~05:00)",
+    schedule: "9월 28일 · 29일 · 30일 (오후 3시~5시)",
     place: "호텔 더 디자이너스 리즈강남프리미어 B1F",
-    fee: "1회 3만원",
+    fee: "1회 3만원 (부가세 포함)",
     payment: true,
-    dateHint: "(참석 가능한 날짜를 선택해 주세요 · 중복 선택 가능 · 매 회차 오후 03:00~05:00)",
+    dateHint: "(참석 가능한 날짜를 선택해 주세요 · 중복 선택 가능 · 매 회차 오후 3시~5시)",
     info:
       '<h3>8.3 세제개편, 오늘 못다한 이야기</h3>' +
       '<p>변화하는 세법 가이드라인 분석 및 맞춤형 실전 자산 방어 전략</p>' +
@@ -35,12 +35,12 @@ window.SEMINARS_DATA = {
       '</ul>' +
       '<h3>일정</h3>' +
       '<p>9월 28일 · 29일 · 30일<br>' +
-      '<span class="info-sub">매 회차 오후 3시 시작 · 약 2시간 진행 (오후 03:00~05:00)</span></p>' +
+      '<span class="info-sub">매 회차 오후 3시 시작 · 약 2시간 진행 (오후 3시~5시)</span></p>' +
       '<h3>진행 방식</h3>' +
       '<p>핵심 세미나 + 1:1 심층 상담<br>' +
       '<span class="info-sub">참석자 전원 1:1 맞춤형 특별 컨설팅 제공</span></p>' +
       '<h3>강의 참가비</h3>' +
-      '<p><b>1회 3만원</b></p>' +
+      '<p><b>1회 3만원</b> (부가세 포함)</p>' +
       '<h3>모집 인원</h3>' +
       '<p>단 20명 한정 (선착순 마감)</p>' +
       '<p class="info-note">* 고밀도 1:1 상담 품질 유지를 위해 20명 충원 시 조기 마감됩니다.</p>' +
@@ -64,11 +64,11 @@ window.SEMINARS_DATA = {
     status: "open",
     poster: "/images/seminar/seminar-4.png",
     summary: "/images/seminar/npl-intro-detail.png",
-    schedule: "경매 8/24·8/31 · NPL 9/14·9/21 (오후 06:30~08:30)",
+    schedule: "경매 8/24·8/31 · NPL 9/14·9/21 (오후 6시 30분~8시 30분)",
     place: "호텔 더 디자이너스 리즈강남프리미어 B1F",
     fee: "각 과정 2주 30만원 (부가세 포함) · 할인 별도",
     payment: true,
-    dateHint: "(중복 선택 가능 · 매 회차 오후 06:30~08:30)",
+    dateHint: "(중복 선택 가능 · 매 회차 오후 6시 30분~8시 30분)",
     info:
       '<h3>강의 참가비</h3>' +
       '<ul>' +
