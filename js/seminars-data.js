@@ -17,7 +17,7 @@ window.SEMINARS_DATA = {
   "vip-tax-forum": {
     title: "VIP 프라이빗 자산 포럼",
     status: "open",
-    poster: "/images/seminar/vip-tax-forum-thumb.jpg",
+    poster: "/images/seminar/vip-tax-forum-thumb.png",
     summary: "/images/seminar/vip-tax-forum.webp",
     schedule: "9월 28일 · 29일 · 30일 (오후 03:00~05:00)",
     place: "호텔 더 디자이너스 리즈강남프리미어 B1F",
