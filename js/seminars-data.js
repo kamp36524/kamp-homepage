@@ -53,7 +53,7 @@ window.SEMINARS_DATA = {
     poster: "/images/seminar/vip-tax-forum.webp",
     summary: "/images/seminar/vip-tax-forum.webp",
     schedule: "9월 28일 · 29일 · 30일",
-    place: "",
+    place: "호텔 더 디자이너스 리즈강남프리미어 B1F",
     fee: "",
     payment: false,
     dateHint: "(참석 가능한 날짜를 선택해 주세요 · 중복 선택 가능)",
@@ -72,8 +72,13 @@ window.SEMINARS_DATA = {
       '<h3>모집 인원</h3>' +
       '<p>단 20명 한정 (선착순 마감)</p>' +
       '<p class="info-note">* 고밀도 1:1 상담 품질 유지를 위해 20명 충원 시 조기 마감됩니다.</p>' +
+      '<h3>오시는 길</h3>' +
+      '<p>호텔 더 디자이너스 리즈강남프리미어 B1F [Joie de Vivre]<br>' +
+      '<span class="info-sub">강남구 봉은사로 113 · 유료 주차 가능</span></p>' +
+      '<img class="info-map" src="/images/seminar/npl-intro-map.png" alt="오시는 길 지도" onerror="this.style.display=\'none\'">' +
+      '<p><a href="https://map.kakao.com/?q=%ED%98%B8%ED%85%94%20%EB%8D%94%20%EB%94%94%EC%9E%90%EC%9D%B4%EB%84%88%EC%8A%A4%20%EB%A6%AC%EC%A6%88%EA%B0%95%EB%82%A8%ED%94%84%EB%A6%AC%EB%AF%B8%EC%96%B4" target="_blank" rel="noopener">카카오맵에서 위치 보기 →</a></p>' +
       '<h3>신청 및 문의</h3>' +
-      '<p>고종완과 함께 오픈채팅방에서도 신청하실 수 있습니다.<br>' +
+      '<p>홈페이지에서 바로 신청하실 수 있으며, 고종완과 함께 오픈채팅방에서도 신청 가능합니다.<br>' +
       '<a href="https://open.kakao.com/o/g1mUmyui" target="_blank" rel="noopener">open.kakao.com/o/g1mUmyui</a></p>',
     dates: [
       "9월 28일",
