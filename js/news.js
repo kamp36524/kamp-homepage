@@ -3,8 +3,9 @@
    ---------------------------------------------------------------------
    · 시트 1행 헤더(정확히): 날짜 | 제목 | 분류 | 내용 | 이미지 | 동영상
        - 분류/내용/이미지/동영상 열은 선택
-       - 이미지: /images/news/파일.jpg 또는 https URL. 줄바꿈/쉼표로 여러 장.
-                 첫 번째 이미지가 카드 대표(썸네일)로 쓰입니다.
+       - 이미지: images/news/파일.jpg (맨 앞 / 는 있어도 없어도 됨) 또는 https URL.
+                 줄바꿈/쉼표로 여러 장. 첫 번째 이미지가 카드 대표(썸네일)로 쓰입니다.
+                 번호 범위 문법 지원: images/news/name_[1-10].jpg → 1~10 자동 확장.
        - 동영상: 유튜브 링크. 줄바꿈/쉼표로 여러 개 가능.
    · 시트를 "링크가 있는 모든 사용자: 뷰어"로 공유하면 읽을 수 있습니다.
    · 아래 CFG.sheetId 에 스프레드시트 ID를 넣으세요. (비어 있으면 준비 중 안내)
@@ -101,8 +102,40 @@
   function splitUrls(s) {
     s = String(s == null ? "" : s).trim();
     if (!s) return [];
-    return s.split(/[\n,]+/).map(function (t) { return t.trim(); })
-      .filter(function (t) { return /^(https?:\/\/|\/)/.test(t); });
+    var out = [];
+    s.split(/[\n,]+/).forEach(function (raw) {
+      var t = raw.trim();
+      if (!t) return;
+      // 번호 범위 문법 예) 260914_hundai_[1-10].jpg → 1~10 자동 확장
+      expandRange(t).forEach(function (u) {
+        var p = normalizePath(u);
+        if (p) out.push(p);
+      });
+    });
+    return out;
+  }
+  // http(s):// 는 그대로, 그 외(images/... , /images/...)는 앞에 / 를 붙여 절대경로화
+  function normalizePath(t) {
+    if (!t) return "";
+    if (/^https?:\/\//i.test(t)) return t;
+    return "/" + t.replace(/^\/+/, "");
+  }
+  // "a_[1-10].jpg" → ["a_1.jpg", ... , "a_10.jpg"] (없으면 원본 그대로 1개)
+  function expandRange(t) {
+    var m = t.match(/\[(\d+)\s*[-~]\s*(\d+)\]/);
+    if (!m) return [t];
+    var start = parseInt(m[1], 10), end = parseInt(m[2], 10);
+    if (isNaN(start) || isNaN(end)) return [t];
+    // 시작값이 0으로 시작하면(예: [01-10]) 자릿수 맞춰 0 채움
+    var pad = (m[1].charAt(0) === "0" && m[1].length > 1) ? m[1].length : 0;
+    var step = start <= end ? 1 : -1, res = [];
+    for (var n = start; step > 0 ? n <= end : n >= end; n += step) {
+      var num = String(Math.abs(n));
+      while (pad && num.length < pad) num = "0" + num;
+      res.push(t.replace(m[0], num));
+      if (res.length > 200) break; // 안전장치
+    }
+    return res;
   }
   function splitYoutube(s) {
     s = String(s == null ? "" : s).trim();
