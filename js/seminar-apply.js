@@ -56,6 +56,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const payBox = form.querySelector(".pay-box");
   if (payBox && seminar.payment !== true) payBox.hidden = true;
 
+  // 안내 이미지(요약/지도) 클릭 시 크게 보기
+  setupLightbox(document.querySelector(".seminar-apply-info"));
+
   // 신청일 체크박스 렌더링
   const dates = Array.isArray(seminar.dates) ? seminar.dates : [];
   if (dates.length) {
@@ -148,6 +151,37 @@ document.addEventListener("DOMContentLoaded", () => {
 function showMessage(el, type, text) {
   el.className = "form-message show " + type;
   el.textContent = text;
+}
+
+// 안내 이미지 확대 보기(라이트박스): scope 안의 이미지를 클릭하면 원본을 크게 표시
+function setupLightbox(scope) {
+  if (!scope) return;
+  var box = document.getElementById("img-lightbox");
+  if (!box) {
+    box = document.createElement("div");
+    box.id = "img-lightbox";
+    box.className = "img-lightbox";
+    box.innerHTML = '<button type="button" class="img-lightbox-x" aria-label="닫기">&times;</button><img alt="확대 이미지">';
+    document.body.appendChild(box);
+    box.addEventListener("click", function (e) {
+      if (e.target === box || e.target.classList.contains("img-lightbox-x")) closeLightbox();
+    });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeLightbox(); });
+  }
+  scope.addEventListener("click", function (e) {
+    var t = e.target;
+    if (t && t.tagName === "IMG" && !t.hidden && t.currentSrc !== "") {
+      box.querySelector("img").src = t.currentSrc || t.src;
+      box.classList.add("open");
+      document.body.style.overflow = "hidden";
+    }
+  });
+}
+function closeLightbox() {
+  var box = document.getElementById("img-lightbox");
+  if (!box) return;
+  box.classList.remove("open");
+  document.body.style.overflow = "";
 }
 function escapeHtml(s) {
   return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
