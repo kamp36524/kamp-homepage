@@ -38,6 +38,11 @@ document.addEventListener("DOMContentLoaded", function () {
         "</ul>" +
         '<span class="btn btn-primary feature-cta">신청하기 →</span>' +
       "</div>";
+    // 포스터(썸네일) 이미지가 없으면 상세 이미지로 대체
+    var img = a.querySelector(".feature-image img");
+    if (img && s.summary && s.summary !== s.poster) {
+      img.onerror = function () { img.onerror = null; img.src = s.summary; };
+    }
     return a;
   }
 
