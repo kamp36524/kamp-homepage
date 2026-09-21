@@ -21,8 +21,8 @@ window.SEMINARS_DATA = {
     summary: "/images/seminar/vip-tax-forum.webp",
     schedule: "9월 28일 · 29일 · 30일 (오후 03:00~05:00)",
     place: "호텔 더 디자이너스 리즈강남프리미어 B1F",
-    fee: "",
-    payment: false,
+    fee: "1회 3만원",
+    payment: true,
     dateHint: "(참석 가능한 날짜를 선택해 주세요 · 중복 선택 가능 · 매 회차 오후 03:00~05:00)",
     info:
       '<h3>8.3 세제개편, 오늘 못다한 이야기</h3>' +
@@ -39,6 +39,8 @@ window.SEMINARS_DATA = {
       '<h3>진행 방식</h3>' +
       '<p>핵심 세미나 + 1:1 심층 상담<br>' +
       '<span class="info-sub">참석자 전원 1:1 맞춤형 특별 컨설팅 제공</span></p>' +
+      '<h3>강의 참가비</h3>' +
+      '<p><b>1회 3만원</b></p>' +
       '<h3>모집 인원</h3>' +
       '<p>단 20명 한정 (선착순 마감)</p>' +
       '<p class="info-note">* 고밀도 1:1 상담 품질 유지를 위해 20명 충원 시 조기 마감됩니다.</p>' +
