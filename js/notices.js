@@ -138,13 +138,15 @@
     return out;
   }
   function pick(idx, names) { for (var i = 0; i < names.length; i++) if (idx[names[i]] != null) return idx[names[i]]; return null; }
-  // 이미지 셀: 줄바꿈/쉼표로 여러 개 구분. http(s):// 또는 / 로 시작하는 값만 사용.
+  // 이미지 셀: 줄바꿈/쉼표로 여러 개 구분.
+  // http(s):// 는 그대로, 그 외(images/... , /images/...)는 앞에 / 를 붙여 절대경로화.
   function splitImages(s) {
     s = String(s == null ? "" : s).trim();
     if (!s) return [];
     return s.split(/[\n,]+/)
       .map(function (t) { return t.trim(); })
-      .filter(function (t) { return /^(https?:\/\/|\/)/.test(t); });
+      .filter(Boolean)
+      .map(function (t) { return /^https?:\/\//i.test(t) ? t : "/" + t.replace(/^\/+/, ""); });
   }
   function isTrue(v) { v = String(v || "").trim().toLowerCase(); return v === "y" || v === "true" || v === "1" || v === "o" || v === "고정" || v === "중요" || v === "✓"; }
   function sortKey(v, f) {
