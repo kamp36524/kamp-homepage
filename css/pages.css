@@ -1467,6 +1467,16 @@
     color: #173052;
     margin: 0 0 22px;
 }
+.seminar-feature-list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+.seminar-empty {
+    text-align: center;
+    color: var(--muted);
+    padding: 40px 8px;
+}
 .seminar-feature {
     display: grid;
     grid-template-columns: minmax(0, 400px) 1fr;
