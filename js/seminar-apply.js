@@ -48,6 +48,14 @@ document.addEventListener("DOMContentLoaded", () => {
   idField.value = id;
   titleField.value = seminar.title;
 
+  // 신청일 안내 문구 (세미나별)
+  const hintEl = document.querySelector("#date-hint");
+  if (hintEl && seminar.dateHint) hintEl.textContent = seminar.dateHint;
+
+  // 입금 안내(계좌·결제) 영역: 세미나별로 표시 여부 결정
+  const payBox = form.querySelector(".pay-box");
+  if (payBox && seminar.payment !== true) payBox.hidden = true;
+
   // 신청일 체크박스 렌더링
   const dates = Array.isArray(seminar.dates) ? seminar.dates : [];
   if (dates.length) {
