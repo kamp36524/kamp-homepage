@@ -29,6 +29,25 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
+  // 종료된 세미나: 안내 이미지는 보여주되 신청은 마감 처리
+  if (seminar.status === "ended") {
+    titleEl.textContent = seminar.title;
+    document.title = seminar.title + " | 한국자산관리원";
+    if (seminar.summary) {
+      imgEl.onerror = () => { imgEl.hidden = true; };
+      imgEl.src = seminar.summary;
+      imgEl.alt = seminar.title + " 안내 이미지";
+      imgEl.hidden = false;
+    }
+    infoEl.hidden = false;
+    infoEl.innerHTML =
+      '<p class="date-empty">이 세미나는 신청이 마감되었습니다.</p>' +
+      '<a class="btn btn-outline" href="/seminar">다른 세미나 보기</a>';
+    form.hidden = true;
+    setupLightbox(document.querySelector(".seminar-apply-info"));
+    return;
+  }
+
   // 세미나 정보 렌더링
   titleEl.textContent = seminar.title;
   document.title = seminar.title + " 신청 | 한국자산관리원";
