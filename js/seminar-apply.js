@@ -84,13 +84,34 @@ document.addEventListener("DOMContentLoaded", () => {
   if (dates.length) {
     dateList.innerHTML = dates.map((d, i) => {
       const val = String(d);
-      return '<label class="date-option">' +
+      return '<label class="date-option" data-date="' + escapeAttr(val) + '">' +
              '<input type="checkbox" name="dates" value="' + escapeAttr(val) + '">' +
              '<span>' + escapeHtml(val) + '</span></label>';
     }).join("");
   } else {
     // 일자 목록이 없으면 날짜 선택 없이 신청
     dateList.innerHTML = '<p class="date-empty">별도 지정 일정 없이 신청이 접수됩니다.</p>';
+  }
+
+  // 정원 마감 처리: 마감된 날짜를 선택 불가('마감')로 표시. 잔여석 숫자는 노출하지 않음.
+  const seatsEndpoint = form.getAttribute("action");
+  const applyFull = (fullList) => {
+    if (!Array.isArray(fullList) || !fullList.length) return;
+    dateList.querySelectorAll(".date-option").forEach((opt) => {
+      if (fullList.indexOf(opt.getAttribute("data-date")) === -1) return;
+      const box = opt.querySelector('input[type="checkbox"]');
+      if (box) { box.checked = false; box.disabled = true; }
+      opt.classList.add("is-full");
+      if (!opt.querySelector(".date-full")) {
+        const b = document.createElement("span");
+        b.className = "date-full";
+        b.textContent = "마감";
+        opt.appendChild(b);
+      }
+    });
+  };
+  if (seminar.capacity && dates.length) {
+    loadFullDates(seatsEndpoint, titleField.value).then(applyFull);
   }
 
   // 결제 방법: 두 체크박스는 하나만 선택되도록 처리
@@ -142,6 +163,19 @@ document.addEventListener("DOMContentLoaded", () => {
       return showMessage(message, "error", "개인정보 수집·이용에 동의해 주세요.");
     }
 
+    // 제출 직전 정원 재확인: 선택한 날짜가 그 사이 마감되었는지 점검
+    if (seminar.capacity && dates.length) {
+      const full = await loadFullDates(seatsEndpoint, titleField.value);
+      if (Array.isArray(full) && full.length) {
+        applyFull(full);
+        const blocked = Array.from(form.querySelectorAll('input[name="dates"]:checked'))
+          .filter((c) => full.indexOf(c.value) >= 0);
+        if (blocked.length) {
+          return showMessage(message, "error", "선택하신 날짜가 마감되었습니다. 남은 날짜를 다시 선택해 주세요.");
+        }
+      }
+    }
+
     const submitButton = form.querySelector("button[type='submit']");
     submitButton.disabled = true;
     submitButton.textContent = "접수 중...";
@@ -171,6 +205,28 @@ document.addEventListener("DOMContentLoaded", () => {
 function showMessage(el, type, text) {
   el.className = "form-message show " + type;
   el.textContent = text;
+}
+
+// 마감된 날짜 목록을 Apps Script 집계 통로(doGet, JSONP)에서 가져옵니다.
+// 개인정보(이름·연락처)는 받지 않고 '마감된 날짜' 목록만 받습니다. 실패 시 null(제한 없음).
+function loadFullDates(endpoint, title) {
+  if (Array.isArray(window.__SEATS_MOCK__)) return Promise.resolve(window.__SEATS_MOCK__); // 테스트용
+  return new Promise((resolve) => {
+    if (!endpoint || !title) return resolve(null);
+    const name = "__seats_" + Math.random().toString(36).slice(2);
+    const s = document.createElement("script");
+    let done = false;
+    const cleanup = () => {
+      try { delete window[name]; } catch (e) { window[name] = undefined; }
+      if (s.parentNode) s.parentNode.removeChild(s);
+    };
+    window[name] = (data) => { done = true; cleanup(); resolve(data && Array.isArray(data.full) ? data.full : null); };
+    s.onerror = () => { if (!done) { cleanup(); resolve(null); } };
+    s.src = endpoint + (endpoint.indexOf("?") >= 0 ? "&" : "?") +
+            "action=seats&seminarTitle=" + encodeURIComponent(title) + "&callback=" + name;
+    document.body.appendChild(s);
+    setTimeout(() => { if (!done) { cleanup(); resolve(null); } }, 8000);
+  });
 }
 
 // 안내 이미지 확대 보기(라이트박스): scope 안의 이미지를 클릭하면 원본을 크게 표시

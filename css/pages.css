@@ -554,6 +554,30 @@
     background: var(--primary-soft);
     font-weight: 700;
 }
+.date-option.is-full {
+    opacity: .6;
+    cursor: not-allowed;
+    background: #f4f5f2;
+    border-color: #e0e3dd;
+}
+.date-option.is-full:hover {
+    border-color: #e0e3dd;
+}
+.date-option.is-full span:not(.date-full) {
+    text-decoration: line-through;
+    color: var(--muted);
+}
+.date-option .date-full {
+    margin-left: auto;
+    flex: 0 0 auto;
+    background: #8a9099;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 800;
+    padding: 3px 10px;
+    border-radius: 999px;
+    text-decoration: none;
+}
 .date-empty {
     margin: 0;
     padding: 14px 16px;

@@ -24,6 +24,7 @@ window.SEMINARS_DATA = {
     place: "호텔 더 디자이너스 리즈강남프리미어 B1F",
     fee: "1회 3만원 (부가세 포함)",
     payment: true,
+    capacity: 20,   // 신청일(회차)별 정원. 마감 시 해당 날짜 선택 불가 (서버 Apps Script와 함께 동작)
     dateHint: "(참석 가능한 날짜를 선택해 주세요 · 중복 선택 가능 · 매 회차 오후 3시~5시)",
     info:
       '<p><b>변화하는 세법 분석 및 맞춤형 실전 자산 방어 전략</b></p>' +
