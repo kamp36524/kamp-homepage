@@ -65,7 +65,8 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   idField.value = id;
-  titleField.value = seminar.title;
+  // 구글 시트 탭 이름으로 쓰이므로 시트에서 허용되지 않는 문자([ ] : \ / ? *)는 제거
+  titleField.value = seminar.title.replace(/[\[\]:\\\/?*]/g, "").replace(/\s+/g, " ").trim();
 
   // 신청일 안내 문구 (세미나별)
   const hintEl = document.querySelector("#date-hint");
