@@ -20,12 +20,12 @@ window.SEMINARS_DATA = {
     status: "open",
     poster: "/images/seminar/taxforum-thumb.png",
     summary: "/images/seminar/taxforum-detail.png",
-    schedule: "9월 28일(월) · 29일(화) · 30일(수) (오후 3시~5시)",
+    schedule: "9월 28일(월) (오후 3시~5시)",
     place: "호텔 더 디자이너스 리즈강남프리미어 B1F",
     fee: "1회 3만원 (부가세 포함)",
     payment: true,
     capacity: 20,   // 신청일(회차)별 정원. 마감 시 해당 날짜 선택 불가 (서버 Apps Script와 함께 동작)
-    dateHint: "(참석 가능한 날짜를 선택해 주세요 · 중복 선택 가능 · 매 회차 오후 3시~5시)",
+    dateHint: "(오후 3시~5시)",
     info:
       '<p><b>변화하는 세법 분석 및 맞춤형 실전 자산 방어 전략</b></p>' +
       '<h3>강사</h3>' +
@@ -37,8 +37,8 @@ window.SEMINARS_DATA = {
       '<h3>세미나 주제</h3>' +
       '<p>8.3 세제개편에 따른 해법 및 투자전략 제안</p>' +
       '<h3>일정</h3>' +
-      '<p>9월 28일(월) · 29일(화) · 30일(수)<br>' +
-      '<span class="info-sub">매 회차 오후 3시 시작 · 약 2시간 진행 (오후 3시~5시)</span></p>' +
+      '<p>9월 28일(월)<br>' +
+      '<span class="info-sub">오후 3시 시작 · 약 2시간 진행 (오후 3시~5시)</span></p>' +
       '<h3>참석자 혜택</h3>' +
       '<ul>' +
         '<li>1:1 맞춤형 상담 서비스 제공</li>' +
@@ -59,9 +59,7 @@ window.SEMINARS_DATA = {
       '<p>홈페이지에서 바로 신청하실 수 있으며, 고종완과 함께 오픈채팅방에서도 신청 가능합니다.<br>' +
       '<a href="https://open.kakao.com/o/g1mUmyui" target="_blank" rel="noopener">open.kakao.com/o/g1mUmyui</a></p>',
     dates: [
-      "9월 28일 (월)",
-      "9월 29일 (화)",
-      "9월 30일 (수)"
+      "9월 28일 (월)"
     ]
   },
 
