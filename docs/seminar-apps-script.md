@@ -22,6 +22,7 @@ https://docs.google.com/spreadsheets/d/1iJyFYgTjymPwo45TEbbZia5U-gfLO_o1bdL-X-91
 
 ```javascript
 var SHEET_ID = '1iJyFYgTjymPwo45TEbbZia5U-gfLO_o1bdL-X-91vI4'; // 신청 저장용 문서
+var CAPACITY = 20; // 신청일(회차)별 정원. 0 또는 음수면 제한 없음.
 
 function doPost(e) {
   var lock = LockService.getScriptLock();
@@ -38,16 +39,25 @@ function doPost(e) {
     var tabName = (p.seminarTitle || '세미나신청').substring(0, 90);
     var sheet = getSheet_(ss, tabName, ['신청일', '이름', '연락처', '결제방법', '개인정보동의', '접수시각']);
 
+    // 현재 신청일별 신청 수 집계 (정원 확인용)
+    var tally = countByDate_(sheet);
+
     var list = dateArr.length ? dateArr : [''];
+    var accepted = [], full = [];
     list.forEach(function (d) {
+      var key = String(d).trim();
+      // 정원 초과한 날짜는 저장하지 않음 (동시 신청도 Lock 안에서 처리되어 초과 없음)
+      if (CAPACITY > 0 && key && (tally[key] || 0) >= CAPACITY) { full.push(d); return; }
       sheet.appendRow([d, p.name || '', p.phone || '', payment, agree, now]);
+      if (key) tally[key] = (tally[key] || 0) + 1;
+      accepted.push(d);
     });
     if (sheet.getLastRow() > 2) {
       sheet.getRange(2, 1, sheet.getLastRow() - 1, sheet.getLastColumn()).sort({ column: 1, ascending: true });
     }
 
     return ContentService
-      .createTextOutput(JSON.stringify({ result: 'success' }))
+      .createTextOutput(JSON.stringify({ result: 'success', accepted: accepted, full: full }))
       .setMimeType(ContentService.MimeType.JSON);
   } catch (err) {
     return ContentService
@@ -56,6 +66,45 @@ function doPost(e) {
   } finally {
     lock.releaseLock();
   }
+}
+
+// 홈페이지가 '마감된 날짜' 목록만 조회하는 통로 (개인정보는 반환하지 않음, JSONP)
+function doGet(e) {
+  var p = (e && e.parameter) ? e.parameter : {};
+  var callback = p.callback || 'callback';
+  var out = { full: [] };
+  try {
+    if (p.action === 'seats' && CAPACITY > 0) {
+      var tabName = (p.seminarTitle || '').substring(0, 90);
+      var ss = SpreadsheetApp.openById(SHEET_ID);
+      var sheet = tabName ? ss.getSheetByName(tabName) : null;
+      if (sheet) {
+        var tally = countByDate_(sheet);
+        Object.keys(tally).forEach(function (d) {
+          if (tally[d] >= CAPACITY) out.full.push(d); // 마감된 날짜만
+        });
+      }
+    }
+  } catch (err) {
+    out.error = String(err);
+  }
+  return ContentService
+    .createTextOutput(callback + '(' + JSON.stringify(out) + ')')
+    .setMimeType(ContentService.MimeType.JAVASCRIPT);
+}
+
+// 신청일(1열) 기준 신청 수 집계
+function countByDate_(sheet) {
+  var tally = {};
+  var last = sheet.getLastRow();
+  if (last > 1) {
+    var col = sheet.getRange(2, 1, last - 1, 1).getValues();
+    col.forEach(function (r) {
+      var d = String(r[0] || '').trim();
+      if (d) tally[d] = (tally[d] || 0) + 1;
+    });
+  }
+  return tally;
 }
 
 function getSheet_(ss, name, headers) {
@@ -74,6 +123,10 @@ function test() {
   sh.appendRow(['(연결 테스트)', '테스트', '-', '-', '-', new Date()]);
 }
 ```
+
+> **정원 마감 동작:** 신청일별 신청 수가 `CAPACITY`(기본 20)에 도달하면, 그 날짜는 더 이상 저장되지 않습니다. 동시 신청도 `LockService` 잠금 안에서 순서대로 처리되어 **21명이 쌓이지 않습니다.**
+> 홈페이지는 `doGet`(집계 통로)에서 **마감된 날짜 목록만** 받아 해당 날짜를 "마감"으로 표시합니다. (이름·연락처 등 개인정보는 반환하지 않습니다.)
+> 정원을 바꾸려면 맨 위 `var CAPACITY = 20;` 값을, 제한을 없애려면 `0` 으로 바꾸면 됩니다.
 
 > **먼저 `test()` 함수를 실행(▶)해 권한을 승인하세요.** 실행 후 그 문서에 탭과 테스트 행이 생기면 스크립트–시트 연결이 정상입니다. (테스트 행은 지우시면 됩니다.)
 >
