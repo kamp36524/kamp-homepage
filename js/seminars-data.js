@@ -61,7 +61,7 @@ window.SEMINARS_DATA = {
 
   "npl-intro": {
     title: "경매 & NPL 입문과정",
-    status: "open",
+    status: "ended",
     poster: "/images/seminar/seminar-4.png",
     summary: "/images/seminar/npl-intro-detail.png",
     schedule: "경매 8/24·8/31 · NPL 9/14·9/21 (오후 6시 30분~8시 30분)",
