@@ -725,8 +725,14 @@
 .seminar-end {
     cursor: default;
 }
+.seminar-end.is-link {
+    cursor: pointer;
+}
 .seminar-end img {
     opacity: .65;
+}
+.seminar-end.is-link:hover img {
+    opacity: .85;
 }
 
 /* ============================================

@@ -5,20 +5,27 @@ document.addEventListener("DOMContentLoaded", function () {
   if (!wrap) return;
 
   var all = window.SEMINARS_DATA || {};
-  var open = [];
+  var open = [], ended = [];
   for (var k in all) {
-    if (all[k] && all[k].status === "open") open.push({ id: k, s: all[k] });
+    if (!all[k]) continue;
+    if (all[k].status === "open") open.push({ id: k, s: all[k] });
+    else if (all[k].status === "ended") ended.push({ id: k, s: all[k] });
   }
 
   // 진행 중인 세미나가 없으면 섹션 숨김
   if (!open.length) {
     var section = wrap.closest("section");
     if (section) section.hidden = true;
-    return;
+  } else {
+    wrap.innerHTML = "";
+    open.forEach(function (o) { wrap.appendChild(buildCard(o.id, o.s)); });
   }
 
-  wrap.innerHTML = "";
-  open.forEach(function (o) { wrap.appendChild(buildCard(o.id, o.s)); });
+  // 종료된 세미나를 '지난 세미나' 목록 앞쪽에 카드로 추가
+  var pastWrap = document.getElementById("past-seminars");
+  if (pastWrap && ended.length) {
+    ended.forEach(function (o) { pastWrap.insertBefore(buildPastCard(o.id, o.s), pastWrap.firstChild); });
+  }
 
   function buildCard(id, s) {
     var a = document.createElement("a");
@@ -43,6 +50,19 @@ document.addEventListener("DOMContentLoaded", function () {
     if (img && s.summary && s.summary !== s.poster) {
       img.onerror = function () { img.onerror = null; img.src = s.summary; };
     }
+    return a;
+  }
+
+  // 지난 세미나 카드(종료) — 이미지 + 종료 배지, 클릭 시 상세(안내 이미지) 보기
+  function buildPastCard(id, s) {
+    var a = document.createElement("a");
+    a.className = "seminar-card seminar-end is-link";
+    a.setAttribute("href", "/seminar-apply?id=" + id);
+    a.innerHTML =
+      '<div class="seminar-image">' +
+        '<img src="' + attr(s.poster || s.summary || "") + '" alt="' + attr(s.title) + '">' +
+        '<span class="seminar-status ended">종료</span>' +
+      "</div>";
     return a;
   }
 
