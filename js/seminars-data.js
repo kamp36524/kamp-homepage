@@ -15,7 +15,7 @@
    ===================================================================== */
 window.SEMINARS_DATA = {
   "vip-tax-forum": {
-    title: "[KAMP 특강] 8.4 세제개편, 못다한 이야기",
+    title: "[KAMP 특강] 8.3 세제개편, 못다한 이야기",
     status: "open",
     poster: "/images/seminar/vip-tax-forum-thumb.png",
     summary: "/images/seminar/vip-tax-forum.webp",
@@ -47,7 +47,8 @@ window.SEMINARS_DATA = {
       '<p class="info-note">* 고밀도 1:1 상담 품질 유지를 위해 20명 충원 시 조기 마감됩니다.</p>' +
       '<h3>오시는 길</h3>' +
       '<p>호텔 더 디자이너스 리즈강남프리미어 B1F [Joie de Vivre]<br>' +
-      '<span class="info-sub">강남구 봉은사로 113 · 한국자산관리원 맞은편 · 유료 주차 가능</span></p>' +
+      '<span class="info-sub">강남구 봉은사로 113 · 유료 주차 가능<br>' +
+      '한국자산관리원 맞은편 · 호텔 더 디자이너스 리즈강남프리미어</span></p>' +
       '<img class="info-map" src="/images/seminar/seminar_location.jpeg" alt="오시는 길 지도" onerror="this.style.display=\'none\'">' +
       '<p><a href="https://map.kakao.com/?q=%ED%98%B8%ED%85%94%20%EB%8D%94%20%EB%94%94%EC%9E%90%EC%9D%B4%EB%84%88%EC%8A%A4%20%EB%A6%AC%EC%A6%88%EA%B0%95%EB%82%A8%ED%94%84%EB%A6%AC%EB%AF%B8%EC%96%B4" target="_blank" rel="noopener">카카오맵에서 위치 보기 →</a></p>' +
       '<h3>신청 및 문의</h3>' +
