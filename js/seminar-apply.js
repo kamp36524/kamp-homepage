@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // 종료된 세미나: 안내 이미지는 보여주되 신청은 마감 처리
   if (seminar.status === "ended") {
-    titleEl.textContent = seminar.title;
+    if (seminar.titleHtml) titleEl.innerHTML = seminar.titleHtml; else titleEl.textContent = seminar.title;
     document.title = seminar.title + " | 한국자산관리원";
     if (seminar.summary) {
       imgEl.onerror = () => { imgEl.hidden = true; };
@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // 세미나 정보 렌더링
-  titleEl.textContent = seminar.title;
+  if (seminar.titleHtml) titleEl.innerHTML = seminar.titleHtml; else titleEl.textContent = seminar.title;
   document.title = seminar.title + " 신청 | 한국자산관리원";
 
   if (seminar.summary) {
