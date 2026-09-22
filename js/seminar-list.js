@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
       "</div>" +
       '<div class="feature-body">' +
         '<span class="feature-badge">진행 중 · 신청 접수</span>' +
-        '<h3 class="feature-title">' + esc(s.title) + "</h3>" +
+        '<h3 class="feature-title">' + (s.titleHtml || esc(s.title)) + "</h3>" +
         '<ul class="feature-meta">' +
           row("일정", s.schedule) +
           row("장소", s.place) +
