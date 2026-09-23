@@ -131,9 +131,11 @@ document.addEventListener("DOMContentLoaded", () => {
     else phoneInput.value = d.slice(0, 3) + "-" + d.slice(3, 7) + "-" + d.slice(7);
   });
 
-  // 제출
+  // 제출 (중복 제출 방지 플래그)
+  let submitting = false;
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
+    if (submitting) return;          // 이미 접수 중이면 재클릭 무시
     message.className = "form-message";
 
     const endpoint = form.getAttribute("action");
@@ -163,24 +165,27 @@ document.addEventListener("DOMContentLoaded", () => {
       return showMessage(message, "error", "개인정보 수집·이용에 동의해 주세요.");
     }
 
-    // 제출 직전 정원 재확인: 선택한 날짜가 그 사이 마감되었는지 점검
-    if (seminar.capacity && dates.length) {
-      const full = await loadFullDates(seatsEndpoint, titleField.value);
-      if (Array.isArray(full) && full.length) {
-        applyFull(full);
-        const blocked = Array.from(form.querySelectorAll('input[name="dates"]:checked'))
-          .filter((c) => full.indexOf(c.value) >= 0);
-        if (blocked.length) {
-          return showMessage(message, "error", "선택하신 날짜가 마감되었습니다. 남은 날짜를 다시 선택해 주세요.");
-        }
-      }
-    }
-
+    // 중복 제출 방지: 검증 통과 즉시 버튼을 잠그고, 이후 비동기 작업(정원 확인·전송)을 진행
     const submitButton = form.querySelector("button[type='submit']");
+    submitting = true;
     submitButton.disabled = true;
     submitButton.textContent = "접수 중...";
 
     try {
+      // 제출 직전 정원 재확인: 선택한 날짜가 그 사이 마감되었는지 점검
+      if (seminar.capacity && dates.length) {
+        const full = await loadFullDates(seatsEndpoint, titleField.value);
+        if (Array.isArray(full) && full.length) {
+          applyFull(full);
+          const blocked = Array.from(form.querySelectorAll('input[name="dates"]:checked'))
+            .filter((c) => full.indexOf(c.value) >= 0);
+          if (blocked.length) {
+            showMessage(message, "error", "선택하신 날짜가 마감되었습니다. 남은 날짜를 다시 선택해 주세요.");
+            return;
+          }
+        }
+      }
+
       // Google Apps Script 웹앱은 CORS 응답 헤더를 제공하지 않으므로 no-cors로 전송합니다.
       // (응답 본문은 읽을 수 없어 opaque 처리되며, 데이터는 정상 전송됩니다.)
       // FormData(multipart) 대신 x-www-form-urlencoded 로 전송하면 Apps Script가
@@ -196,6 +201,7 @@ document.addEventListener("DOMContentLoaded", () => {
     } catch (error) {
       showMessage(message, "error", "접수 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.");
     } finally {
+      submitting = false;
       submitButton.disabled = false;
       submitButton.textContent = "세미나 신청하기";
     }
@@ -225,7 +231,7 @@ function loadFullDates(endpoint, title) {
     s.src = endpoint + (endpoint.indexOf("?") >= 0 ? "&" : "?") +
             "action=seats&seminarTitle=" + encodeURIComponent(title) + "&callback=" + name;
     document.body.appendChild(s);
-    setTimeout(() => { if (!done) { cleanup(); resolve(null); } }, 8000);
+    setTimeout(() => { if (!done) { cleanup(); resolve(null); } }, 4000);
   });
 }
 
