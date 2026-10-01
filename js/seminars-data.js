@@ -3,6 +3,7 @@
    - 세미나를 추가/수정하려면 이 파일만 고치면 됩니다.
      · title    : 세미나 제목 (신청 시 구글 시트 탭 이름으로도 사용)
      · status   : "open"(진행 중) | "ended"(종료)
+     · date     : 등록/진행 기준일(YYYY-MM-DD). 지난 세미나 최신순 정렬에 사용
      · poster   : 목록 배너용 포스터 이미지
      · summary  : 신청 페이지 상세(요약) 이미지
      · schedule : 일정 (배너 표시)
@@ -18,6 +19,7 @@ window.SEMINARS_DATA = {
     title: "[KAMP 특강] 8.3 세제개편, 못다한 이야기",
     titleHtml: "[KAMP 특강]<br>8.3 세제개편, 못다한 이야기",
     status: "ended",
+    date: "2026-09-28",   // 등록/진행 기준일 (지난 세미나 최신순 정렬에 사용)
     poster: "/images/seminar/taxforum-thumb.png",
     summary: "/images/seminar/taxforum-detail.png",
     schedule: "9월 28일(월) (오후 3시~5시)",
@@ -66,6 +68,7 @@ window.SEMINARS_DATA = {
   "npl-intro": {
     title: "경매 & NPL 입문과정",
     status: "ended",
+    date: "2026-09-21",   // 등록/진행 기준일 (지난 세미나 최신순 정렬에 사용)
     poster: "/images/seminar/seminar-4.png",
     summary: "/images/seminar/npl-intro-detail.png",
     schedule: "경매 8/24·8/31 · NPL 9/14·9/21 (오후 6시 30분~8시 30분)",
