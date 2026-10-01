@@ -17,7 +17,7 @@ window.SEMINARS_DATA = {
   "vip-tax-forum": {
     title: "[KAMP 특강] 8.3 세제개편, 못다한 이야기",
     titleHtml: "[KAMP 특강]<br>8.3 세제개편, 못다한 이야기",
-    status: "open",
+    status: "ended",
     poster: "/images/seminar/taxforum-thumb.png",
     summary: "/images/seminar/taxforum-detail.png",
     schedule: "9월 28일(월) (오후 3시~5시)",
