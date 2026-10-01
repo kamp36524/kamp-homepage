@@ -21,11 +21,16 @@ document.addEventListener("DOMContentLoaded", function () {
     open.forEach(function (o) { wrap.appendChild(buildCard(o.id, o.s)); });
   }
 
-  // 종료된 세미나를 '지난 세미나' 목록 앞쪽에 카드로 추가
+  // 종료된 세미나를 '지난 세미나' 목록 앞쪽에, 등록일(date) 기준 최신순으로 추가
   var pastWrap = document.getElementById("past-seminars");
   if (pastWrap && ended.length) {
-    ended.forEach(function (o) { pastWrap.insertBefore(buildPastCard(o.id, o.s), pastWrap.firstChild); });
+    ended.sort(function (a, b) { return dateVal(b.s.date) - dateVal(a.s.date); });
+    var frag = document.createDocumentFragment();
+    ended.forEach(function (o) { frag.appendChild(buildPastCard(o.id, o.s)); });
+    pastWrap.insertBefore(frag, pastWrap.firstChild);
   }
+
+  function dateVal(d) { var t = Date.parse(d); return isNaN(t) ? 0 : t; }
 
   function buildCard(id, s) {
     var a = document.createElement("a");
