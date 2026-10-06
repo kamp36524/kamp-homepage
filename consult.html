@@ -34,20 +34,126 @@
         <p>접수된 정보는 상담 연락 목적으로만 사용됩니다.</p>
       </aside>
       <form id="consult-form" class="consult-form card" action="https://script.google.com/macros/s/AKfycbxriFg1Sb1rvjVM7gLymaJEigtLTegHQSeUXvgeAs7lssLOQB77p4MGuVB5tBUJZWE/exec" method="POST">
-        <div class="form-grid">
-          <div class="form-field"><label for="name">이름 *</label><input id="name" name="name" required></div>
-          <div class="form-field"><label for="phone">휴대폰 번호 *</label><input id="phone" name="phone" type="tel" placeholder="010-0000-0000" required></div>
-          <div class="form-field full">
-            <label for="category">상담 분야 *</label>
-            <select id="category" name="category" required>
-              <option value="">선택해 주세요</option>
-              <option>KAMP 세미나</option><option>KAMP 클리닉</option><option>KAMP 경매</option>
-              <option>법률·세무 자문</option><option>재건축·재개발 자문</option><option>기타</option>
-            </select>
+
+        <!-- ① 신청자 정보 -->
+        <div class="form-section">
+          <h3 class="form-section-title">신청자 정보</h3>
+          <div class="form-grid">
+            <div class="form-field"><label for="name">이름 *</label><input id="name" name="name" required></div>
+            <div class="form-field"><label for="phone">휴대폰 번호 *</label><input id="phone" name="phone" type="tel" inputmode="numeric" placeholder="010-0000-0000" required></div>
+            <div class="form-field">
+              <label for="age">연령대</label>
+              <select id="age" name="age">
+                <option value="">선택</option>
+                <option>30대 이하</option><option>40대</option><option>50대</option><option>60대 이상</option>
+              </select>
+            </div>
+            <div class="form-field">
+              <label for="income">연 소득대 (선택)</label>
+              <select id="income" name="income">
+                <option value="">선택</option>
+                <option>5천만원 이하</option><option>5천만~1억</option><option>1억~2억</option><option>2억 이상</option>
+              </select>
+            </div>
           </div>
-          <div class="form-field full"><label for="content">상담 내용 *</label><textarea id="content" name="content" required placeholder="현재 상황과 상담을 원하는 내용을 작성해 주세요. (예시: 주택수/ 예상투자금액/ 내집마련 여부/ 갈아타기)"></textarea></div>
         </div>
-        <label class="agreement"><input type="checkbox" name="privacy_agreement" required><span>개인정보 수집 및 상담 연락에 동의합니다.</span></label>
+
+        <!-- ② 상담 희망 -->
+        <div class="form-section">
+          <h3 class="form-section-title">상담 희망</h3>
+          <div class="form-grid">
+            <div class="form-field full">
+              <label for="category">상담 분야 *</label>
+              <select id="category" name="category" required>
+                <option value="">선택해 주세요</option>
+                <option>KAMP 세미나</option><option>KAMP 클리닉</option><option>KAMP 경매</option>
+                <option>법률·세무 자문</option><option>재건축·재개발 자문</option><option>기타</option>
+              </select>
+            </div>
+            <div class="form-field"><label for="consult_date">상담 희망 날짜</label><input id="consult_date" name="consult_date" type="date"></div>
+            <div class="form-field">
+              <label for="consult_time">희망 시간대</label>
+              <select id="consult_time" name="consult_time">
+                <option value="">선택</option>
+                <option>오전 (9~12시)</option><option>오후 (12~18시)</option><option>저녁 (18시 이후)</option>
+              </select>
+            </div>
+            <div class="form-field full">
+              <label>상담 방식</label>
+              <div class="radio-row">
+                <label class="radio-chip"><input type="radio" name="consult_method" value="방문 상담"><span>방문</span></label>
+                <label class="radio-chip"><input type="radio" name="consult_method" value="전화 상담"><span>전화</span></label>
+                <label class="radio-chip"><input type="radio" name="consult_method" value="화상 상담"><span>화상</span></label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ③ 상담 목적 -->
+        <div class="form-section">
+          <h3 class="form-section-title">상담 목적 <span class="field-hint">(복수 선택 가능)</span></h3>
+          <div class="check-group">
+            <label class="check-chip"><input type="checkbox" name="purpose" value="내 집 마련"><span>내 집 마련</span></label>
+            <label class="check-chip"><input type="checkbox" name="purpose" value="갈아타기"><span>갈아타기</span></label>
+            <label class="check-chip"><input type="checkbox" name="purpose" value="매도·현금화"><span>매도·현금화</span></label>
+            <label class="check-chip"><input type="checkbox" name="purpose" value="증여·상속"><span>증여·상속</span></label>
+            <label class="check-chip"><input type="checkbox" name="purpose" value="세금 절세"><span>세금 절세</span></label>
+            <label class="check-chip"><input type="checkbox" name="purpose" value="포트폴리오 재편"><span>포트폴리오 재편</span></label>
+            <label class="check-chip"><input type="checkbox" name="purpose" value="경·공매 투자"><span>경·공매 투자</span></label>
+            <label class="check-chip"><input type="checkbox" name="purpose" value="기타"><span>기타</span></label>
+          </div>
+        </div>
+
+        <!-- ④ 자산 현황 -->
+        <div class="form-section">
+          <h3 class="form-section-title">자산 현황 <span class="field-hint">(선택 · 상담 준비에 도움이 됩니다)</span></h3>
+          <div class="form-grid">
+            <div class="form-field">
+              <label for="house_count">현재 주택 수</label>
+              <select id="house_count" name="house_count">
+                <option value="">선택</option><option>무주택</option><option>1주택</option><option>2주택</option><option>다주택</option>
+              </select>
+            </div>
+            <div class="form-field"><label for="property_count">보유 부동산 수</label><input id="property_count" name="property_count" type="number" min="0" inputmode="numeric" placeholder="예: 3"></div>
+            <div class="form-field">
+              <label for="asset_size">보유 자산 규모</label>
+              <select id="asset_size" name="asset_size">
+                <option value="">선택</option><option>10억 이하</option><option>10억~30억</option><option>30억~50억</option><option>50억 이상</option>
+              </select>
+            </div>
+            <div class="form-field">
+              <label for="cash_available">투자 가능 현금</label>
+              <select id="cash_available" name="cash_available">
+                <option value="">선택</option><option>1억 이하</option><option>1억~5억</option><option>5억~10억</option><option>10억 이상</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- ⑤ 상담 내용 -->
+        <div class="form-section">
+          <h3 class="form-section-title">상담 내용 *</h3>
+          <div class="form-grid">
+            <div class="form-field full">
+              <textarea id="content" name="content" required placeholder="상담 받고 싶은 내용을 자유롭게 작성해 주세요.&#10;보유 부동산이 있으시면 물건별로 아래 정보를 함께 적어주시면 상담이 빨라집니다.&#10;· 소재지 / 평형&#10;· 취득 시기 · 매입가&#10;· 현재 시세 / 대출&#10;· 임대(전세·월세) 현황&#10;· 매도 / 보유 등 계획"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- ⑥ 유입 경로 -->
+        <div class="form-section">
+          <h3 class="form-section-title">유입 경로 <span class="field-hint">(선택)</span></h3>
+          <div class="form-grid">
+            <div class="form-field full">
+              <select id="source" name="source">
+                <option value="">선택</option>
+                <option>네이버 검색</option><option>유튜브</option><option>지인 소개</option><option>오픈채팅방</option><option>인스타그램</option><option>기타</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <label class="agreement"><input type="checkbox" name="privacy_agreement" required><span>개인정보(자산·소득 등 민감정보 포함) 수집·이용 및 상담 연락에 동의합니다.</span></label>
         <button class="btn btn-primary" type="submit">상담 신청하기</button>
         <div id="form-message" class="form-message" role="status"></div>
       </form>

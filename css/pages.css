@@ -419,6 +419,65 @@
 .consult-form {
     padding: 36px;
 }
+.form-section {
+    margin-bottom: 8px;
+}
+.form-section + .form-section {
+    margin-top: 26px;
+}
+.form-section-title {
+    font-size: 16px;
+    font-weight: 800;
+    color: #173052;
+    margin: 0 0 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--line);
+}
+.form-section-title .field-hint {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--muted);
+    margin-left: 4px;
+}
+.check-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.check-chip,
+.radio-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 15px;
+    border: 1px solid #cfd5cb;
+    border-radius: 999px;
+    background: #fff;
+    cursor: pointer;
+    font-size: 15px;
+    transition: border-color .15s, background .15s;
+}
+.check-chip input,
+.radio-chip input {
+    width: 17px;
+    height: 17px;
+    accent-color: var(--primary);
+}
+.check-chip:hover,
+.radio-chip:hover {
+    border-color: var(--primary);
+}
+.check-chip:has(input:checked),
+.radio-chip:has(input:checked) {
+    border-color: var(--primary);
+    background: var(--primary-soft);
+    font-weight: 700;
+}
+.radio-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
 .form-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
