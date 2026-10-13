@@ -19,12 +19,12 @@ window.SEMINARS_DATA = {
     title: "두바이 프리미엄 부동산 투자 설명회",
     status: "open",
     date: "2026-10-27",
-    poster: "/images/seminar/dubai-forum.webp",
-    summary: "/images/seminar/dubai-forum.webp",
+    poster: "/images/seminar/dubai-forum-thumb.png",
+    summary: "/images/seminar/dubai-forum.png",
     schedule: "10월 27일(화) (오후 2시~4시)",
     place: "서울스퀘어 13층 13K 회의실",
-    fee: "",
-    payment: false,
+    fee: "1만원",
+    payment: true,
     dateHint: "(오후 2시~4시)",
     info:
       '<p><b>두바이 프리미엄 부동산 투자 설명회</b></p>' +
@@ -45,6 +45,8 @@ window.SEMINARS_DATA = {
         '<li>UAE 법인·재단 설립</li>' +
         '<li>자산 보호·승계</li>' +
       '</ul>' +
+      '<h3>참가비</h3>' +
+      '<p><b>1만원</b></p>' +
       '<h3>오시는 길</h3>' +
       '<p>서울스퀘어 13층 13K 회의실<br>' +
       '<span class="info-sub">서울특별시 중구 한강대로 416</span></p>' +
