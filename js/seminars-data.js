@@ -20,7 +20,7 @@ window.SEMINARS_DATA = {
     status: "open",
     date: "2026-10-27",
     poster: "/images/seminar/dubai-forum-thumb.png",
-    summary: "/images/seminar/dubai-forum.webp",
+    summary: "/images/seminar/dubai-forum.png",
     schedule: "10월 27일(화) (오후 2시~4시)",
     place: "서울스퀘어 13층 13K 회의실",
     fee: "1만원",
