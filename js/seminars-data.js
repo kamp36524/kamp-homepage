@@ -42,7 +42,7 @@ window.SEMINARS_DATA = {
       '<h3>오시는 길</h3>' +
       '<p>서울스퀘어 13층 13K 회의실<br>' +
       '<span class="info-sub">서울특별시 중구 한강대로 416</span></p>' +
-      '<p><a href="https://map.kakao.com/?q=%EC%84%9C%EC%9A%B8%ED%8A%B9%EB%B3%84%EC%8B%9C%20%EC%A4%91%EA%B5%AC%20%ED%95%9C%EA%B0%95%EB%8C%80%EB%A1%9C%20416" target="_blank" rel="noopener">카카오맵에서 위치 보기 →</a></p>' +
+      '<p><a href="https://map.naver.com/p/search/%EC%84%9C%EC%9A%B8%EC%8A%A4%ED%80%98%EC%96%B4%20%28%EC%84%9C%EC%9A%B8%ED%8A%B9%EB%B3%84%EC%8B%9C%20%EC%A4%91%EA%B5%AC%20%ED%95%9C%EA%B0%95%EB%8C%80%EB%A1%9C%20416%29" target="_blank" rel="noopener">네이버 지도에서 위치 보기 →</a></p>' +
       '<h3>주차 안내</h3>' +
       '<p>투루파킹 서울스퀘어 주차장 1F~3F<br>' +
       '<span class="info-sub">서울시 중구 한강대로 416, 04637</span></p>' +
