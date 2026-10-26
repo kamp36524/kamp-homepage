@@ -15,6 +15,51 @@
      · dates    : 신청 폼의 신청일 목록(중복 선택 가능)
    ===================================================================== */
 window.SEMINARS_DATA = {
+  "forum-2027": {
+    title: "2027 부동산 대전환기, 생존을 넘어 선점하라",
+    titleHtml: "2027 부동산 대전환기,<br>생존을 넘어 선점하라",
+    status: "open",
+    date: "2026-11-09",
+    poster: "/images/seminar/forum-2027-thumb.png",
+    summary: "/images/seminar/forum-2027.webp",
+    schedule: "11월 9일(월) · 16일(월) (오후 1시~5시)",
+    place: "호텔 더 디자이너스 리즈강남프리미어 B1F",
+    fee: "1부 3만원 · 2부 3만원",
+    payment: true,
+    dateHint: "(참여할 날짜를 선택해 주세요 · 중복 선택 가능 · 오후 1시~5시)",
+    info:
+      '<p><b>거시 사이클 예측 기반의 중장기 전망 × 하락·조정기 실전 법원경매 필승 전략</b></p>' +
+      '<p class="info-sub">대한민국 최고 부동산 학자 고종완 원장 × 실전 경매 투자 전문가 김도형 총괄의 4시간 릴레이 마스터클래스</p>' +
+      '<h3>1부 · 특강 (2시간) — 2027 부동산 시장 전망 / 고종완 원장</h3>' +
+      '<ul>' +
+        '<li>글로벌 금리 기조와 시장 흐름 분석</li>' +
+        '<li>수도권 핵심지와 유망 권역 전망</li>' +
+        '<li>자산가 포트폴리오 전략</li>' +
+      '</ul>' +
+      '<h3>2부 · 특강 (2시간) — 실전 법원경매 마스터 / 김도형 총괄</h3>' +
+      '<ul>' +
+        '<li>경매 시장 변화와 최적 매수 기회</li>' +
+        '<li>필수 3대 권리분석으로 리스크 0%</li>' +
+        '<li>경락잔금대출 및 명도 실무 노하우</li>' +
+      '</ul>' +
+      '<h3>일정</h3>' +
+      '<p>11월 9일(월) · 16일(월) (2회)<br>' +
+      '<span class="info-sub">오후 1시~5시 (4시간)</span></p>' +
+      '<h3>참가비</h3>' +
+      '<p>1부 <b>3만원</b> · 2부 <b>3만원</b></p>' +
+      '<h3>참석자 혜택</h3>' +
+      '<p>1:1 상담 VIP 상품권 증정 (선착순 5명)</p>' +
+      '<h3>오시는 길</h3>' +
+      '<p>호텔 더 디자이너스 리즈강남프리미어 B1F [Joie de Vivre]<br>' +
+      '<span class="info-sub">서울 강남구 봉은사로 113 · 유료 주차 가능</span></p>' +
+      '<img class="info-map" src="/images/seminar/seminar_location.jpeg" alt="오시는 길 지도" onerror="this.style.display=\'none\'">' +
+      '<p><a href="https://map.kakao.com/?q=%ED%98%B8%ED%85%94%20%EB%8D%94%20%EB%94%94%EC%9E%90%EC%9D%B4%EB%84%88%EC%8A%A4%20%EB%A6%AC%EC%A6%88%EA%B0%95%EB%82%A8%ED%94%84%EB%A6%AC%EB%AF%B8%EC%96%B4" target="_blank" rel="noopener">카카오맵에서 위치 보기 →</a></p>',
+    dates: [
+      "11월 9일 (월)",
+      "11월 16일 (월)"
+    ]
+  },
+
   "dubai-forum": {
     title: "두바이 프리미엄 부동산 투자 설명회",
     status: "open",
