@@ -23,11 +23,11 @@ window.SEMINARS_DATA = {
     date: "2026-11-09",
     poster: "/images/seminar/forum-2027-thumb.webp",
     summary: "/images/seminar/forum-2027.webp",
-    schedule: "11월 9일(월) · 16일(월) (오후 1시~5시)",
+    schedule: "11월 9일(월) · 16일(월) (오후 3시~7시)",
     place: "호텔 더 디자이너스 리즈강남프리미어 B1F",
     fee: "1부 3만원 · 2부 3만원",
     payment: true,
-    dateHint: "(참여할 날짜를 선택해 주세요 · 중복 선택 가능 · 오후 1시~5시)",
+    dateHint: "(참여할 날짜를 선택해 주세요 · 중복 선택 가능 · 오후 3시~7시)",
     info:
       '<p><b>거시 사이클 예측 기반의 중장기 전망 × 하락·조정기 실전 법원경매 필승 전략</b></p>' +
       '<p class="info-sub">대한민국 최고 부동산 학자 고종완 원장 × 실전 경매 투자 전문가 김도형 총괄의 4시간 릴레이 마스터클래스</p>' +
@@ -45,7 +45,7 @@ window.SEMINARS_DATA = {
       '</ul>' +
       '<h3>일정</h3>' +
       '<p>11월 9일(월) · 16일(월) (2회)<br>' +
-      '<span class="info-sub">오후 1시~5시 (4시간)</span></p>' +
+      '<span class="info-sub">오후 3시~7시 (4시간)</span></p>' +
       '<h3>참가비</h3>' +
       '<p>1부 <b>3만원</b> · 2부 <b>3만원</b></p>' +
       '<h3>참석자 혜택</h3>' +
