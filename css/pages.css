@@ -637,6 +637,16 @@
     border-radius: 999px;
     text-decoration: none;
 }
+.date-option .date-fee {
+    margin-left: auto;
+    flex: 0 0 auto;
+    color: var(--primary-dark);
+    font-weight: 800;
+    font-size: 15px;
+}
+.date-option.is-full .date-fee {
+    margin-left: 0;
+}
 .date-empty {
     margin: 0;
     padding: 14px 16px;
