@@ -56,8 +56,8 @@ window.SEMINARS_DATA = {
       '<img class="info-map" src="/images/seminar/seminar_location.jpeg" alt="오시는 길 지도" onerror="this.style.display=\'none\'">' +
       '<p><a href="https://map.naver.com/p/search/%ED%98%B8%ED%85%94%20%EB%8D%94%20%EB%94%94%EC%9E%90%EC%9D%B4%EB%84%88%EC%8A%A4%20%EB%A6%AC%EC%A6%88%EA%B0%95%EB%82%A8%ED%94%84%EB%A6%AC%EB%AF%B8%EC%96%B4" target="_blank" rel="noopener">네이버 지도에서 위치 보기 →</a></p>',
     dates: [
-      { label: "11월 9일 (월)", fee: "3만원" },
-      { label: "11월 16일 (월)", fee: "3만원" }
+      { label: "1부 · 11월 9일 (월)", fee: "3만원" },
+      { label: "2부 · 11월 16일 (월)", fee: "3만원" }
     ]
   },
 
