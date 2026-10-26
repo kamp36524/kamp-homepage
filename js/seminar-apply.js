@@ -82,11 +82,14 @@ document.addEventListener("DOMContentLoaded", () => {
   // 신청일 체크박스 렌더링
   const dates = Array.isArray(seminar.dates) ? seminar.dates : [];
   if (dates.length) {
-    dateList.innerHTML = dates.map((d, i) => {
-      const val = String(d);
-      return '<label class="date-option" data-date="' + escapeAttr(val) + '">' +
-             '<input type="checkbox" name="dates" value="' + escapeAttr(val) + '">' +
-             '<span>' + escapeHtml(val) + '</span></label>';
+    dateList.innerHTML = dates.map((d) => {
+      const label = (d && typeof d === "object") ? String(d.label || "") : String(d);
+      const fee = (d && typeof d === "object" && d.fee) ? String(d.fee) : "";
+      return '<label class="date-option" data-date="' + escapeAttr(label) + '">' +
+             '<input type="checkbox" name="dates" value="' + escapeAttr(label) + '">' +
+             '<span>' + escapeHtml(label) + '</span>' +
+             (fee ? '<span class="date-fee">' + escapeHtml(fee) + '</span>' : "") +
+             '</label>';
     }).join("");
   } else {
     // 일자 목록이 없으면 날짜 선택 없이 신청

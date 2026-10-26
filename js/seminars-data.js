@@ -12,7 +12,8 @@
      · payment  : true 면 신청 폼에 입금 안내(계좌·결제) 표시. false/생략 시 숨김
      · dateHint : 신청일 선택 안내 문구 (생략 시 기본 문구)
      · info     : 신청 페이지 안내 HTML
-     · dates    : 신청 폼의 신청일 목록(중복 선택 가능)
+     · dates    : 신청 폼의 신청일 목록(중복 선택 가능).
+                  "문자열" 또는 { label, fee } 형태 — fee를 넣으면 체크박스에 참가비 표시
    ===================================================================== */
 window.SEMINARS_DATA = {
   "forum-2027": {
@@ -20,7 +21,7 @@ window.SEMINARS_DATA = {
     titleHtml: "2027 부동산 대전환기,<br>생존을 넘어 선점하라",
     status: "open",
     date: "2026-11-09",
-    poster: "/images/seminar/forum-2027-thumb.png",
+    poster: "/images/seminar/forum-2027-thumb.webp",
     summary: "/images/seminar/forum-2027.webp",
     schedule: "11월 9일(월) · 16일(월) (오후 1시~5시)",
     place: "호텔 더 디자이너스 리즈강남프리미어 B1F",
@@ -53,10 +54,10 @@ window.SEMINARS_DATA = {
       '<p>호텔 더 디자이너스 리즈강남프리미어 B1F [Joie de Vivre]<br>' +
       '<span class="info-sub">서울 강남구 봉은사로 113 · 유료 주차 가능</span></p>' +
       '<img class="info-map" src="/images/seminar/seminar_location.jpeg" alt="오시는 길 지도" onerror="this.style.display=\'none\'">' +
-      '<p><a href="https://map.kakao.com/?q=%ED%98%B8%ED%85%94%20%EB%8D%94%20%EB%94%94%EC%9E%90%EC%9D%B4%EB%84%88%EC%8A%A4%20%EB%A6%AC%EC%A6%88%EA%B0%95%EB%82%A8%ED%94%84%EB%A6%AC%EB%AF%B8%EC%96%B4" target="_blank" rel="noopener">카카오맵에서 위치 보기 →</a></p>',
+      '<p><a href="https://map.naver.com/p/search/%ED%98%B8%ED%85%94%20%EB%8D%94%20%EB%94%94%EC%9E%90%EC%9D%B4%EB%84%88%EC%8A%A4%20%EB%A6%AC%EC%A6%88%EA%B0%95%EB%82%A8%ED%94%84%EB%A6%AC%EB%AF%B8%EC%96%B4" target="_blank" rel="noopener">네이버 지도에서 위치 보기 →</a></p>',
     dates: [
-      "11월 9일 (월)",
-      "11월 16일 (월)"
+      { label: "11월 9일 (월)", fee: "3만원" },
+      { label: "11월 16일 (월)", fee: "3만원" }
     ]
   },
 
