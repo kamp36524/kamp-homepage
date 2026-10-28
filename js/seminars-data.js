@@ -63,7 +63,7 @@ window.SEMINARS_DATA = {
 
   "dubai-forum": {
     title: "두바이 프리미엄 부동산 투자 설명회",
-    status: "open",
+    status: "ended",
     date: "2026-10-27",
     poster: "/images/seminar/dubai-forum-thumb.png",
     summary: "/images/seminar/dubai-forum.png",
