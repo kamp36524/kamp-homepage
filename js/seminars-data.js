@@ -25,7 +25,7 @@ window.SEMINARS_DATA = {
     summary: "/images/seminar/forum-2027.webp",
     schedule: "11월 9일(월) · 16일(월) (오후 3시~6시)",
     place: "호텔 더 디자이너스 리즈강남프리미어 B1F",
-    fee: "1부 3만원 · 2부 3만원",
+    fee: "1부 3만원 · 2부 3만원 (부가세 포함)",
     payment: true,
     dateHint: "(참여할 날짜를 선택해 주세요 · 중복 선택 가능 · 오후 3시~6시)",
     info:
@@ -47,7 +47,7 @@ window.SEMINARS_DATA = {
       '<p>11월 9일(월) · 16일(월) (2회)<br>' +
       '<span class="info-sub">오후 3시~6시 (3시간)</span></p>' +
       '<h3>참가비</h3>' +
-      '<p>1부 <b>3만원</b> · 2부 <b>3만원</b></p>' +
+      '<p>1부 <b>3만원</b> · 2부 <b>3만원</b> (부가세 포함)</p>' +
       '<h3>참석자 혜택</h3>' +
       '<p>1:1 상담 VIP 상품권 증정 (선착순 5명)</p>' +
       '<h3>오시는 길</h3>' +
@@ -56,8 +56,8 @@ window.SEMINARS_DATA = {
       '<img class="info-map" src="/images/seminar/seminar_location.jpeg" alt="오시는 길 지도" onerror="this.style.display=\'none\'">' +
       '<p><a href="https://map.naver.com/p/search/%ED%98%B8%ED%85%94%20%EB%8D%94%20%EB%94%94%EC%9E%90%EC%9D%B4%EB%84%88%EC%8A%A4%20%EB%A6%AC%EC%A6%88%EA%B0%95%EB%82%A8%ED%94%84%EB%A6%AC%EB%AF%B8%EC%96%B4" target="_blank" rel="noopener">네이버 지도에서 위치 보기 →</a></p>',
     dates: [
-      { label: "1부 · 11월 9일 (월)", fee: "3만원" },
-      { label: "2부 · 11월 16일 (월)", fee: "3만원" }
+      { label: "1부 · 11월 9일 (월)", fee: "3만원 (부가세 포함)" },
+      { label: "2부 · 11월 16일 (월)", fee: "3만원 (부가세 포함)" }
     ]
   },
 
