@@ -27,7 +27,7 @@ window.SEMINARS_DATA = {
     place: "호텔 더 디자이너스 리즈강남프리미어 B1F",
     fee: "1부 3만원 · 2부 3만원 (부가세 포함)",
     payment: true,
-    dateHint: "(참여할 날짜를 선택해 주세요 · 중복 선택 가능 · 오후 3시~6시)",
+    dateHint: "(날짜별 1부·2부를 각각 선택할 수 있습니다 · 중복 선택 가능 · 오후 3시~6시)",
     info:
       '<p><b>거시 사이클 예측 기반의 중장기 전망 × 하락·조정기 저가 매수 타이밍 선별법</b></p>' +
       '<p class="info-sub">대한민국 최고 부동산 학자 고종완 원장 × 실전 경매 투자 전문가 김도형 총괄의 3시간 릴레이 마스터클래스</p>' +
@@ -56,8 +56,10 @@ window.SEMINARS_DATA = {
       '<img class="info-map" src="/images/seminar/seminar_location.jpeg" alt="오시는 길 지도" onerror="this.style.display=\'none\'">' +
       '<p><a href="https://map.naver.com/p/search/%ED%98%B8%ED%85%94%20%EB%8D%94%20%EB%94%94%EC%9E%90%EC%9D%B4%EB%84%88%EC%8A%A4%20%EB%A6%AC%EC%A6%88%EA%B0%95%EB%82%A8%ED%94%84%EB%A6%AC%EB%AF%B8%EC%96%B4" target="_blank" rel="noopener">네이버 지도에서 위치 보기 →</a></p>',
     dates: [
-      { label: "1부 · 11월 9일 (월)", fee: "3만원 (부가세 포함)" },
-      { label: "2부 · 11월 16일 (월)", fee: "3만원 (부가세 포함)" }
+      { label: "11월 9일 (월) · 1부", fee: "3만원 (부가세 포함)" },
+      { label: "11월 9일 (월) · 2부", fee: "3만원 (부가세 포함)" },
+      { label: "11월 16일 (월) · 1부", fee: "3만원 (부가세 포함)" },
+      { label: "11월 16일 (월) · 2부", fee: "3만원 (부가세 포함)" }
     ]
   },
 
