@@ -19,7 +19,7 @@ window.SEMINARS_DATA = {
   "forum-2027": {
     title: "2027 부동산 대전환기, 생존을 넘어 선점하라",
     titleHtml: "2027 부동산 대전환기,<br>생존을 넘어 선점하라",
-    status: "open",
+    status: "ended",
     date: "2026-11-09",
     poster: "/images/seminar/forum-2027-thumb.webp",
     summary: "/images/seminar/forum-2027.webp",
